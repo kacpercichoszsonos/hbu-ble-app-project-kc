@@ -7,15 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */; };
+		4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EF29375EFB00D07F49 /* ViewModel.swift */; };
+		4BE02A222923BD1C007C221C /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A202923BD1C007C221C /* MainCollectionViewCell.swift */; };
+		4BE02A232923BD1C007C221C /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A212923BD1C007C221C /* MainCollectionViewCell.xib */; };
+		4BE02A252923E35C007C221C /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A242923E35C007C221C /* BleManager.swift */; };
+		4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */; };
+		4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */; };
+		4BE02A3829266FCA007C221C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3629266FCA007C221C /* DetailsViewController.swift */; };
+		4BE02A3929266FCA007C221C /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A3729266FCA007C221C /* DetailsViewController.xib */; };
+		4BE02A3B29267249007C221C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3A29267249007C221C /* Extensions.swift */; };
+		4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3C29267866007C221C /* DetailsViewModel.swift */; };
+		4BE02A3F29269039007C221C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3E29269039007C221C /* Constants.swift */; };
+		4BE02A442927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */; };
+		4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */; };
 		4BEEC696292299740007314C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC695292299740007314C /* AppDelegate.swift */; };
 		4BEEC698292299740007314C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC697292299740007314C /* SceneDelegate.swift */; };
-		4BEEC69A292299740007314C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC699292299740007314C /* ViewController.swift */; };
-		4BEEC69D292299740007314C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC69B292299740007314C /* Main.storyboard */; };
 		4BEEC69F292299760007314C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC69E292299760007314C /* Assets.xcassets */; };
 		4BEEC6A2292299760007314C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC6A0292299760007314C /* LaunchScreen.storyboard */; };
 		4BEEC6AD292299770007314C /* BLEProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6AC292299770007314C /* BLEProjectTests.swift */; };
 		4BEEC6B7292299770007314C /* BLEProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6B6292299770007314C /* BLEProjectUITests.swift */; };
 		4BEEC6B9292299770007314C /* BLEProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6B8292299770007314C /* BLEProjectUITestsLaunchTests.swift */; };
+		4BEEC6C729229F220007314C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C529229F220007314C /* MainViewController.swift */; };
+		4BEEC6C829229F220007314C /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C629229F220007314C /* MainViewController.xib */; };
+		4BEEC6CA29229F400007314C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C929229F400007314C /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +51,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDeviceModel.swift; sourceTree = "<group>"; };
+		4B8B73EF29375EFB00D07F49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4BE02A202923BD1C007C221C /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BE02A212923BD1C007C221C /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
+		4BE02A242923E35C007C221C /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
+		4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelledViewController.swift; sourceTree = "<group>"; };
+		4BE02A3629266FCA007C221C /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		4BE02A3729266FCA007C221C /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		4BE02A3A29267249007C221C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4BE02A3C29267866007C221C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		4BE02A3E29269039007C221C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BEEC692292299740007314C /* BLEProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC695292299740007314C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BEEC697292299740007314C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4BEEC699292299740007314C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4BEEC69C292299740007314C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BEEC69E292299760007314C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BEEC6A1292299760007314C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BEEC6A3292299760007314C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +76,9 @@
 		4BEEC6B2292299770007314C /* BLEProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC6B6292299770007314C /* BLEProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEProjectUITests.swift; sourceTree = "<group>"; };
 		4BEEC6B8292299770007314C /* BLEProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4BEEC6C529229F220007314C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4BEEC6C629229F220007314C /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		4BEEC6C929229F400007314C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +106,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B8B73ED292E7CCF00D07F49 /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				4BE02A1F2923BD00007C221C /* Cells */,
+				4BEEC6C529229F220007314C /* MainViewController.swift */,
+				4BEEC6C629229F220007314C /* MainViewController.xib */,
+				4BEEC6C929229F400007314C /* MainViewModel.swift */,
+			);
+			path = "Main Page";
+			sourceTree = "<group>";
+		};
+		4B8B73EE292E7CE600D07F49 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */,
+				4BE02A242923E35C007C221C /* BleManager.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		4BE02A1F2923BD00007C221C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4BE02A202923BD1C007C221C /* MainCollectionViewCell.swift */,
+				4BE02A212923BD1C007C221C /* MainCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4BE02A2A2923F127007C221C /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */,
+				4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */,
+				4B8B73EF29375EFB00D07F49 /* ViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		4BE02A3529266F92007C221C /* Details Page */ = {
+			isa = PBXGroup;
+			children = (
+				4BE02A412927E5BD007C221C /* Cells */,
+				4BE02A3629266FCA007C221C /* DetailsViewController.swift */,
+				4BE02A3729266FCA007C221C /* DetailsViewController.xib */,
+				4BE02A3C29267866007C221C /* DetailsViewModel.swift */,
+			);
+			path = "Details Page";
+			sourceTree = "<group>";
+		};
+		4BE02A412927E5BD007C221C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */,
+				4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		4BEEC689292299740007314C = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +188,17 @@
 		4BEEC694292299740007314C /* BLEProject */ = {
 			isa = PBXGroup;
 			children = (
+				4B8B73EE292E7CE600D07F49 /* BLE */,
+				4B8B73ED292E7CCF00D07F49 /* Main Page */,
+				4BE02A3529266F92007C221C /* Details Page */,
+				4BE02A2A2923F127007C221C /* MVVM */,
 				4BEEC695292299740007314C /* AppDelegate.swift */,
 				4BEEC697292299740007314C /* SceneDelegate.swift */,
-				4BEEC699292299740007314C /* ViewController.swift */,
-				4BEEC69B292299740007314C /* Main.storyboard */,
 				4BEEC69E292299760007314C /* Assets.xcassets */,
 				4BEEC6A0292299760007314C /* LaunchScreen.storyboard */,
 				4BEEC6A3292299760007314C /* Info.plist */,
+				4BE02A3A29267249007C221C /* Extensions.swift */,
+				4BE02A3E29269039007C221C /* Constants.swift */,
 			);
 			path = BLEProject;
 			sourceTree = "<group>";
@@ -232,8 +325,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEEC6A2292299760007314C /* LaunchScreen.storyboard in Resources */,
+				4BEEC6C829229F220007314C /* MainViewController.xib in Resources */,
+				4BE02A3929266FCA007C221C /* DetailsViewController.xib in Resources */,
+				4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */,
 				4BEEC69F292299760007314C /* Assets.xcassets in Resources */,
-				4BEEC69D292299740007314C /* Main.storyboard in Resources */,
+				4BE02A232923BD1C007C221C /* MainCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +354,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BEEC69A292299740007314C /* ViewController.swift in Sources */,
+				4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */,
+				4BEEC6C729229F220007314C /* MainViewController.swift in Sources */,
+				4BE02A252923E35C007C221C /* BleManager.swift in Sources */,
+				4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */,
 				4BEEC696292299740007314C /* AppDelegate.swift in Sources */,
+				4BE02A222923BD1C007C221C /* MainCollectionViewCell.swift in Sources */,
+				4BE02A3F29269039007C221C /* Constants.swift in Sources */,
 				4BEEC698292299740007314C /* SceneDelegate.swift in Sources */,
+				4BEEC6CA29229F400007314C /* MainViewModel.swift in Sources */,
+				4BE02A3B29267249007C221C /* Extensions.swift in Sources */,
+				4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */,
+				4BE02A442927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift in Sources */,
+				4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */,
+				4BE02A3829266FCA007C221C /* DetailsViewController.swift in Sources */,
+				4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +405,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4BEEC69B292299740007314C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BEEC69C292299740007314C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4BEEC6A0292299760007314C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -440,9 +540,10 @@
 				DEVELOPMENT_TEAM = 2G4LW83Q3E;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BLEProject/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = Whatever;
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = Costam;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,9 +569,10 @@
 				DEVELOPMENT_TEAM = 2G4LW83Q3E;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BLEProject/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = Whatever;
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = Costam;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
