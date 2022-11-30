@@ -5,7 +5,7 @@
 //  Created by Kacper Cichosz on 17/11/2022.
 //
 
-import UIKit
+import Foundation
 
 extension Dictionary {
     subscript(i: Int) -> (key: Key, value: Value) {

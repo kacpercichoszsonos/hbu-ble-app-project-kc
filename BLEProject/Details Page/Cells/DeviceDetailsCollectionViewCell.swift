@@ -26,6 +26,7 @@ class DeviceDetailsCollectionViewCell: UICollectionViewCell {
             self.titleLabel.text = "Service UUID:"
             self.descriptionLabel.text = ((data?.value as? Array<Any>)?.first as? CBUUID)?.uuidString
         case .none:
+            // In case for some reason we will get some data without the known key, let's populate cell with N/A
             self.titleLabel.text = "N/A"
             self.descriptionLabel.text = "N/A"
         }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreBluetooth
 
 class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
