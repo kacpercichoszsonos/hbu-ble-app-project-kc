@@ -57,13 +57,13 @@ class DetailsViewController: ModelledViewController<DetailsViewModel> {
 // MARK: UICollectionViewDataSource
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.device.data?.count ?? 0
+        return self.viewModel.device.bleData?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeviceDetailsCollectionViewCell", for: indexPath) as! DeviceDetailsCollectionViewCell
-        let data = self.viewModel.device.data?[indexPath.row]
-        cell.setupCell(data: data)
+        let bleData = self.viewModel.device.bleData?[indexPath.row]
+        cell.setupCell(bleData: bleData)
         return cell
     }
 }
