@@ -13,6 +13,9 @@ enum AdvertisementDataKeys: String, CaseIterable {
     case kCBAdvDataIsConnectable
     case kCBAdvDataLocalName
     case kCBAdvDataServiceUUIDs
+    case characteristicBatteryLevel
+    case characteristicManufacturerName
+    case characteristicModelName
 }
 
 class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -33,6 +36,13 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         didSet {
             NotificationCenter.default.post(name: Constants.Notifications.scannedDevicesChangedNotification,
                                             object: self.scannedDevices)
+        }
+    }
+
+    var connectedDevice: BleDeviceModel? {
+        didSet {
+            NotificationCenter.default.post(name: Constants.Notifications.connectedDeviceValueChanged,
+                                            object: self.connectedDevice)
         }
     }
 
@@ -81,7 +91,6 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Device disconnected!!!!")
-        //TODO: Implement device disconnection feature
         self.isDeviceConnected = false
     }
 
@@ -110,14 +119,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        // Prints out the batter level if found
-        //TODO: Implement the characterists handling
-        let data = characteristic.value
-        var byte:UInt8 = 0
-        data?.copyBytes(to: &byte, count: 1)
-
-        let valueInInt = Int(byte)
-        print(valueInInt)
+        self.handleCharacteristics(peripheral: peripheral, characteristic: characteristic)
     }
 
     /// Filters advertisementData to return only data we are interested in displaying with key as AdvertisementDataKeys
@@ -135,11 +137,43 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         return advertisementArray
     }
 
-    func updateConnectionStatus(peripheral: CBPeripheral) {
+    func updateConnectionStatus(device: BleDeviceModel) {
         if self.isDeviceConnected {
-            self.centralManager.cancelPeripheralConnection(peripheral)
+            self.connectedDevice = nil
+            self.centralManager.cancelPeripheralConnection(device.peripheral)
         } else {
-            self.peripheralToConnect = peripheral
+            self.connectedDevice = device
+            self.peripheralToConnect = device.peripheral
+        }
+    }
+
+    func handleCharacteristics(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
+        if let connectedDevice {
+            var updatedData = connectedDevice.data
+            if Constants.ServiceIDs.BATTERY_LEVEL == characteristic.uuid {
+                var byte:UInt8 = 0
+                characteristic.value?.copyBytes(to: &byte, count: 1)
+
+                let valueInInt = Int(byte)
+                updatedData?[AdvertisementDataKeys.characteristicBatteryLevel] = String(valueInInt)
+            }
+            if Constants.ServiceIDs.MODEL_NUMBER_STRING == characteristic.uuid {
+                if let value = characteristic.value {
+                    let string = String(data: value, encoding: .utf8)
+                    updatedData?[AdvertisementDataKeys.characteristicModelName] = string
+                }
+
+            }
+            if Constants.ServiceIDs.MANUFACTURER_NAME_STRING == characteristic.uuid {
+                if let value = characteristic.value {
+                    let string = String(data: value, encoding: .utf8)
+                    updatedData?[AdvertisementDataKeys.characteristicManufacturerName] = string
+                }
+
+            }
+            self.connectedDevice = BleDeviceModel(peripheral: connectedDevice.peripheral,
+                                                  name: connectedDevice.name,
+                                                  data: updatedData)
         }
     }
 }

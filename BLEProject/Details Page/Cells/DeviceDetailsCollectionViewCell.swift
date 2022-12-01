@@ -25,6 +25,15 @@ class DeviceDetailsCollectionViewCell: UICollectionViewCell {
         case .kCBAdvDataServiceUUIDs:
             self.titleLabel.text = "Service UUID:"
             self.descriptionLabel.text = ((data?.value as? Array<Any>)?.first as? CBUUID)?.uuidString
+        case .characteristicBatteryLevel:
+            self.titleLabel.text = "Battery Level:"
+            self.descriptionLabel.text = "\((data?.value as? String ?? "Unknown")) %"
+        case .characteristicManufacturerName:
+            self.titleLabel.text = "Manufacturer Name:"
+            self.descriptionLabel.text = data?.value as? String ?? ""
+        case .characteristicModelName:
+            self.titleLabel.text = "Model Name: "
+            self.descriptionLabel.text = data?.value as? String ?? ""
         case .none:
             // In case for some reason we will get some data without the known key, let's populate cell with N/A
             self.titleLabel.text = "N/A"

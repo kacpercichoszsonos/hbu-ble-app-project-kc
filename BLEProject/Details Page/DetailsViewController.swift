@@ -31,6 +31,7 @@ class DetailsViewController: ModelledViewController<DetailsViewModel> {
         case .reload:
             self.setupConnectBarButtons()
             self.navigationItem.rightBarButtonItem = self.connectRightBarButton
+            self.collectionView.reloadData()
         case .loading:
             self.navigationItem.rightBarButtonItem = self.loadingRightBarButton
         }
