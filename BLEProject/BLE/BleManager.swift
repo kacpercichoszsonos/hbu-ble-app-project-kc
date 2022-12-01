@@ -79,7 +79,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         if !self.scannedDevices.contains(where: {$0.name == peripheral.name}) {
             self.scannedDevices.append(BleDeviceModel(peripheral: peripheral,
                                                       name: peripheral.name ?? "Unknown device",
-                                                      data: self.filterAdvertisementData(advertisementData: advertisementData)))
+                                                      bleData: self.filterAdvertisementData(advertisementData: advertisementData)))
         }
     }
 
@@ -119,24 +119,26 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        self.handleCharacteristics(peripheral: peripheral, characteristic: characteristic)
+        self.handleCharacteristics(characteristic: characteristic)
     }
 
     /// Filters advertisementData to return only data we are interested in displaying with key as AdvertisementDataKeys
     /// - Parameter advertisementData: data to filter
-    /// - Returns: Filtered data as [AdvertisementDataKeys : Any]
-    func filterAdvertisementData(advertisementData: [String : Any]) -> [AdvertisementDataKeys : Any] {
-        var advertisementArray: [AdvertisementDataKeys : Any] = [:]
+    /// - Returns: Filtered data as [BleData]
+    func filterAdvertisementData(advertisementData: [String : Any]) -> [BleData]? {
+        var bleData = [BleData]()
         advertisementData.forEach { (key, value) in
             AdvertisementDataKeys.allCases.forEach { enumKey in
                 if enumKey.rawValue == key {
-                    advertisementArray[enumKey] = value
+                    bleData.append(BleData(key: enumKey, value: value))
                 }
             }
         }
-        return advertisementArray
+        return bleData
     }
 
+    /// Disconnect device if connected and connect if not.
+    /// - Parameter device: Device to connect/disconnect to
     func updateConnectionStatus(device: BleDeviceModel) {
         if self.isDeviceConnected {
             self.connectedDevice = nil
@@ -147,33 +149,36 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
 
-    func handleCharacteristics(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
+    /// Handle characteristics if device is connected.
+    /// - Parameters:
+    ///   - characteristic: CBCharacteristic
+    func handleCharacteristics(characteristic: CBCharacteristic) {
         if let connectedDevice {
-            var updatedData = connectedDevice.data
+            var updatedData = connectedDevice.bleData
             if Constants.ServiceIDs.BATTERY_LEVEL == characteristic.uuid {
                 var byte:UInt8 = 0
                 characteristic.value?.copyBytes(to: &byte, count: 1)
-
                 let valueInInt = Int(byte)
-                updatedData?[AdvertisementDataKeys.characteristicBatteryLevel] = String(valueInInt)
+                updatedData?.append(BleData(key: AdvertisementDataKeys.characteristicBatteryLevel,
+                                            value: String(valueInInt)))
             }
             if Constants.ServiceIDs.MODEL_NUMBER_STRING == characteristic.uuid {
                 if let value = characteristic.value {
-                    let string = String(data: value, encoding: .utf8)
-                    updatedData?[AdvertisementDataKeys.characteristicModelName] = string
+                    updatedData?.append(BleData(key: AdvertisementDataKeys.characteristicModelName,
+                                                value: String(data: value, encoding: .utf8) as Any))
                 }
 
             }
             if Constants.ServiceIDs.MANUFACTURER_NAME_STRING == characteristic.uuid {
                 if let value = characteristic.value {
-                    let string = String(data: value, encoding: .utf8)
-                    updatedData?[AdvertisementDataKeys.characteristicManufacturerName] = string
+                    updatedData?.append(BleData(key: AdvertisementDataKeys.characteristicManufacturerName,
+                                                value: String(data: value, encoding: .utf8) as Any))
                 }
 
             }
             self.connectedDevice = BleDeviceModel(peripheral: connectedDevice.peripheral,
                                                   name: connectedDevice.name,
-                                                  data: updatedData)
+                                                  bleData: updatedData)
         }
     }
 }
