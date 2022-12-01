@@ -14,17 +14,42 @@ class DetailsViewController: ModelledViewController<DetailsViewModel> {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    var connectRightBarButton: UIBarButtonItem?
+    var loadingRightBarButton: UIBarButtonItem?
+
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UINib(nibName: "DeviceDetailsCollectionViewCell", bundle: nil),
                                      forCellWithReuseIdentifier: "DeviceDetailsCollectionViewCell")
         self.title = self.viewModel.device.name
+        self.viewModel.update?(.reload)
+    }
+
+    override func updateView(_ type: DetailsViewModel.UpdateType) {
+        switch type {
+        case .reload:
+            self.setupConnectBarButtons()
+            self.navigationItem.rightBarButtonItem = self.connectRightBarButton
+        case .loading:
+            self.navigationItem.rightBarButtonItem = self.loadingRightBarButton
+        }
+    }
+
+    private func setupConnectBarButtons() {
+        self.loadingRightBarButton = UIBarButtonItem(title: "Loading",
+                                                     style: .plain,
+                                                     target: self,
+                                                     action: nil)
+        self.connectRightBarButton = UIBarButtonItem(title: self.viewModel.isConnected ? "Disconnect" : "Connect",
+                                                     style: .plain,
+                                                     target: self,
+                                                     action: #selector(didTapConnectionBtn))
     }
 
     // MARK: Actions
-    @IBAction func didTapConnectBtn() {
-        self.viewModel.connectBtnTapped()
+    @objc func didTapConnectionBtn() {
+        self.viewModel.connectionBtnTapped()
     }
 }
 

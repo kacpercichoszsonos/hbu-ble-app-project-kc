@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q9w-Yr-UN1">
-                    <rect key="frame" x="0.0" y="58" width="414" height="759"/>
+                    <rect key="frame" x="0.0" y="58" width="414" height="804"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XjP-rO-5ec">
                         <size key="itemSize" width="128" height="128"/>
@@ -35,36 +34,19 @@
                         <outlet property="delegate" destination="-1" id="Ewy-jI-fMJ"/>
                     </connections>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ag-Js-y44">
-                    <rect key="frame" x="50" y="822" width="314" height="30"/>
-                    <color key="backgroundColor" name="AccentColor"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Connect">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="didTapConnectBtn" destination="-1" eventType="touchUpInside" id="12C-5d-r2L"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="8ag-Js-y44" firstAttribute="top" secondItem="Q9w-Yr-UN1" secondAttribute="bottom" constant="5" id="ACw-KI-ubs"/>
                 <constraint firstItem="Q9w-Yr-UN1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BfZ-ji-LpQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8ag-Js-y44" secondAttribute="trailing" constant="50" id="J5K-jr-yT6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Q9w-Yr-UN1" secondAttribute="bottom" id="JvC-rD-u24"/>
                 <constraint firstItem="Q9w-Yr-UN1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="L14-p9-9SG"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8ag-Js-y44" secondAttribute="bottom" constant="10" id="Qe0-Yk-XWk"/>
-                <constraint firstItem="8ag-Js-y44" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="bca-zp-hBj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q9w-Yr-UN1" secondAttribute="trailing" id="giN-bh-g0D"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -30,5 +30,6 @@ struct Constants {
 
     struct Notifications {
         static let scannedDevicesChangedNotification = Notification.Name("scannedDevicesChanged")
+        static let connectedToDevice = Notification.Name("connectedToDevice")
     }
 }

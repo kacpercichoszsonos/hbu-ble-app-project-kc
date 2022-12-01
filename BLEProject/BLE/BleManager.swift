@@ -22,10 +22,17 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private var peripheral: CBPeripheral!
     private var sonosOnlySearch: Bool = false
     private var peripheralToConnect: CBPeripheral?
+    private var isDeviceConnected: Bool = false {
+        didSet {
+            NotificationCenter.default.post(name: Constants.Notifications.connectedToDevice,
+                                            object: self.isDeviceConnected)
+        }
+    }
 
     var scannedDevices: [BleDeviceModel] = [] {
         didSet {
-            NotificationCenter.default.post(name: Constants.Notifications.scannedDevicesChangedNotification, object: self.scannedDevices)
+            NotificationCenter.default.post(name: Constants.Notifications.scannedDevicesChangedNotification,
+                                            object: self.scannedDevices)
         }
     }
 
@@ -69,11 +76,13 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = self
         peripheral.discoverServices(Constants.ServiceIDs.servicesToDiscover)
+        self.isDeviceConnected = true
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Device disconnected!!!!")
         //TODO: Implement device disconnection feature
+        self.isDeviceConnected = false
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -126,7 +135,11 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         return advertisementArray
     }
 
-    func connectDevice(peripheral: CBPeripheral) {
-        self.peripheralToConnect = peripheral
+    func updateConnectionStatus(peripheral: CBPeripheral) {
+        if self.isDeviceConnected {
+            self.centralManager.cancelPeripheralConnection(peripheral)
+        } else {
+            self.peripheralToConnect = peripheral
+        }
     }
 }
