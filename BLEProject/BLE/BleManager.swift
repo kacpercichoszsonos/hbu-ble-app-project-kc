@@ -76,7 +76,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         // Otherwise scan for all devices to display them in Main Menu
         self.peripheral = peripheral
         self.peripheral.delegate = self
-        if !self.scannedDevices.contains(where: {$0.name == peripheral.name}) {
+        if !self.scannedDevices.contains(where: {$0.peripheral.identifier == peripheral.identifier}) {
             self.scannedDevices.append(BleDeviceModel(peripheral: peripheral,
                                                       name: peripheral.name ?? "Unknown device",
                                                       bleData: self.filterAdvertisementData(advertisementData: advertisementData)))
