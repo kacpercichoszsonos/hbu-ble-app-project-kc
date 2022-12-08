@@ -58,7 +58,7 @@ class DetailsViewModel: ViewModel, ViewModelProtocol {
     }
 
     func connectionBtnTapped() {
-        BleManager.shared.updateConnectionStatus(device: self.device)
         self.update?(.loading)
+        BleManager.shared.updateConnectionStatus(device: self.device)
     }
 }

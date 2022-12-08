@@ -46,14 +46,11 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
 
-    override init() {
+    init(sonosOnlySearch: Bool? = false) {
         super.init()
-        self.centralManager = CBCentralManager(delegate: self, queue: .main)
-    }
-
-    init(sonosOnlySearch: Bool) {
-        super.init()
-        self.sonosOnlySearch = sonosOnlySearch
+        if let sonosOnlySearch {
+            self.sonosOnlySearch = sonosOnlySearch
+        }
         self.centralManager = CBCentralManager(delegate: self, queue: .main)
     }
 
@@ -87,6 +84,11 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         peripheral.delegate = self
         peripheral.discoverServices(Constants.ServiceIDs.servicesToDiscover)
         self.isDeviceConnected = true
+        self.scannedDevices.forEach { deviceModel in
+            if deviceModel.peripheral.identifier == self.peripheralToConnect?.identifier {
+                self.connectedDevice = deviceModel
+            }
+        }
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -144,8 +146,11 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             self.connectedDevice = nil
             self.centralManager.cancelPeripheralConnection(device.peripheral)
         } else {
-            self.connectedDevice = device
             self.peripheralToConnect = device.peripheral
+            // Have to restart scanning process since we stopped it when connected to the device for the first time.
+            // If we disconnect and connect again, we need to restart process of scanning until we connect to the device again.
+            self.centralManager.scanForPeripherals(withServices: self.sonosOnlySearch ?
+                                                   [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
         }
     }
 
