@@ -10,7 +10,7 @@ import UIKit
 private let MainMenuCollectionViewCellHeight = 50.0
 private let MainMenuCollectionViewCellWidthInset = 25.0
 
-class MainViewController: ModelledViewController<MainViewModel> {
+class BleScannerViewController: ModelledViewController<BleScannerViewModel> {
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -18,11 +18,11 @@ class MainViewController: ModelledViewController<MainViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.update?(.landing)
-        self.collectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil),
-                                     forCellWithReuseIdentifier: "MainCollectionViewCell")
+        self.collectionView.register(UINib(nibName: "BleScannerCollectionViewCell", bundle: nil),
+                                     forCellWithReuseIdentifier: "BleScannerCollectionViewCell")
     }
 
-    override func updateView(_ type: MainViewModel.UpdateType) {
+    override func updateView(_ type: BleScannerViewModel.UpdateType) {
         switch type {
         case .landing:
             self.loadingView.isHidden = true
@@ -47,13 +47,13 @@ class MainViewController: ModelledViewController<MainViewModel> {
 }
 
 // MARK: UICollectionViewDataSource
-extension MainViewController: UICollectionViewDataSource {
+extension BleScannerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.devices?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BleScannerCollectionViewCell", for: indexPath) as! BleScannerCollectionViewCell
         cell.setupCell(peripheralName: self.viewModel.devices?[indexPath.row].name)
         return cell
     }
@@ -68,7 +68,7 @@ extension MainViewController: UICollectionViewDataSource {
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
-extension MainViewController: UICollectionViewDelegateFlowLayout {
+extension BleScannerViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.bounds.width - MainMenuCollectionViewCellWidthInset), height: MainMenuCollectionViewCellHeight)
     }
