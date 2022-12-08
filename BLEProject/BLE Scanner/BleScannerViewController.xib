@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="BLEProject" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BleScannerViewController" customModule="BLEProject" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="ODd-Xh-Y5G" id="zeU-dc-Ygw"/>
-                <outlet property="loadingView" destination="Jd8-eB-f3a" id="Phc-Dc-qtR"/>
+                <outlet property="collectionView" destination="ODd-Xh-Y5G" id="GEu-7l-pAX"/>
+                <outlet property="loadingView" destination="Jd8-eB-f3a" id="g0f-jI-nVw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
