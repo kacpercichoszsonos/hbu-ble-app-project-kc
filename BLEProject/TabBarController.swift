@@ -56,6 +56,5 @@ class TabBarController: UITabBarController {
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let viewController = self.viewControllers?[selectedIndex] as? UINavigationController
-        viewController?.popToRootViewController(animated: false)
     }
 }

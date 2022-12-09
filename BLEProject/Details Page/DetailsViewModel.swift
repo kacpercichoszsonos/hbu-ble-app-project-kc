@@ -14,7 +14,7 @@ class DetailsViewModel: ViewModel, ViewModelProtocol {
         }
     }
 
-    var isConnected: Bool = false {
+    var isConnected: ConnectionState = .disconnected {
         didSet {
             self.update?(.reload)
         }
@@ -41,7 +41,7 @@ class DetailsViewModel: ViewModel, ViewModelProtocol {
                                                                           object: nil,
                                                                           queue: nil,
                                                                           using: { [weak self] note in
-            self?.isConnected = note.object as! Bool
+            self?.isConnected = note.object as! ConnectionState
         })
     }
 

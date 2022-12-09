@@ -18,6 +18,11 @@ enum AdvertisementDataKeys: String, CaseIterable {
     case characteristicModelName
 }
 
+enum ConnectionState {
+    case disconnected
+    case connected
+}
+
 class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     static let shared = BleManager()
 
@@ -25,7 +30,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private var peripheral: CBPeripheral!
     private var sonosOnlySearch: Bool = false
     private var peripheralToConnect: CBPeripheral?
-    private var isDeviceConnected: Bool = false {
+    private var isDeviceConnected: ConnectionState = .disconnected {
         didSet {
             NotificationCenter.default.post(name: Constants.Notifications.connectedToDevice,
                                             object: self.isDeviceConnected)
@@ -46,11 +51,9 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
 
-    init(sonosOnlySearch: Bool? = false) {
+    init(sonosOnlySearch: Bool = false) {
         super.init()
-        if let sonosOnlySearch {
-            self.sonosOnlySearch = sonosOnlySearch
-        }
+        self.sonosOnlySearch = sonosOnlySearch
         self.centralManager = CBCentralManager(delegate: self, queue: .main)
     }
 
@@ -59,13 +62,15 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             self.centralManager.scanForPeripherals(withServices: self.sonosOnlySearch ?
                                                    [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
         }
+        if central.state == .poweredOff {
+            self.centralManager.stopScan()
+        }
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         // If user pressed "Connect", try connecting to the selected device
         if let peripheralToConnect {
             if peripheralToConnect.identifier == peripheral.identifier {
-                self.centralManager.stopScan()
                 self.centralManager.connect(peripheral)
             }
 
@@ -83,17 +88,21 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = self
         peripheral.discoverServices(Constants.ServiceIDs.servicesToDiscover)
-        self.isDeviceConnected = true
+        self.centralManager.stopScan()
+        self.isDeviceConnected = .connected
         self.scannedDevices.forEach { deviceModel in
             if deviceModel.peripheral.identifier == self.peripheralToConnect?.identifier {
                 self.connectedDevice = deviceModel
             }
         }
+        print("Device connected!!!")
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Device disconnected!!!!")
-        self.isDeviceConnected = false
+        self.isDeviceConnected = .disconnected
+        self.connectedDevice = nil
+        self.peripheralToConnect = nil
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -142,15 +151,15 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     /// Disconnect device if connected and connect if not.
     /// - Parameter device: Device to connect/disconnect to
     func updateConnectionStatus(device: BleDeviceModel) {
-        if self.isDeviceConnected {
-            self.connectedDevice = nil
-            self.centralManager.cancelPeripheralConnection(device.peripheral)
-        } else {
+        switch isDeviceConnected {
+        case .disconnected:
             self.peripheralToConnect = device.peripheral
             // Have to restart scanning process since we stopped it when connected to the device for the first time.
             // If we disconnect and connect again, we need to restart process of scanning until we connect to the device again.
             self.centralManager.scanForPeripherals(withServices: self.sonosOnlySearch ?
                                                    [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
+        case .connected:
+            self.centralManager.cancelPeripheralConnection(device.peripheral)
         }
     }
 
@@ -185,5 +194,9 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                                                   name: connectedDevice.name,
                                                   bleData: updatedData)
         }
+    }
+
+    func writeData(data: Data, forCharacteristic characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
+        self.connectedDevice?.peripheral.writeValue(data, for: characteristic, type: type)
     }
 }
