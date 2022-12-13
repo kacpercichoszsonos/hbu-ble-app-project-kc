@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
     }
 
     func setUpTabBarController() {
-        let dukeController = UINavigationController(rootViewController: DukeControlViewController())
+        let dukeController = UINavigationController(rootViewController: DukeControlViewController(viewModel: DukeControlViewModel()))
         let bleScanner = UINavigationController(rootViewController: BleScannerViewController(viewModel: BleScannerViewModel()))
         self.setViewControllers([dukeController, bleScanner], animated: true)
         guard let items = self.tabBar.items else {

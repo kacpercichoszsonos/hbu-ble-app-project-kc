@@ -30,6 +30,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private var peripheral: CBPeripheral!
     private var sonosOnlySearch: Bool = false
     private var peripheralToConnect: CBPeripheral?
+    private var dataToWrite: Data?
     private var isDeviceConnected: ConnectionState = .disconnected {
         didSet {
             NotificationCenter.default.post(name: Constants.Notifications.connectedToDevice,
@@ -126,6 +127,15 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 peripheral.setNotifyValue(true, for: characteristic)
                 peripheral.readValue(for: characteristic)
             }
+            if Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID == characteristic.uuid {
+                //TODO: Read Sonos characteristics
+            }
+            if Constants.ServiceIDs.Sonos.SONOS_GATT_IN_CHAR_UUID == characteristic.uuid {
+                // If dataToWrite was set, write the data to characteristic
+                if let dataToWrite {
+                    peripheral.writeValue(dataToWrite, for: characteristic, type: .withoutResponse)
+                }
+            }
         }
     }
 
@@ -196,7 +206,9 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
 
-    func writeData(data: Data, forCharacteristic characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
-        self.connectedDevice?.peripheral.writeValue(data, for: characteristic, type: type)
+    func writeData(data: Data) {
+        self.dataToWrite = data
+        self.connectedDevice?.peripheral.discoverServices([Constants.ServiceIDs.Sonos.SONOS_GATT_IN_CHAR_UUID])
     }
 }
+
