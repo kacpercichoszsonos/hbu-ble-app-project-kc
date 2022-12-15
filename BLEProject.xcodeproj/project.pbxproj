@@ -13,6 +13,7 @@
 		4B97856E29425DEF00C3A270 /* DukeControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97856C29425DEF00C3A270 /* DukeControlViewController.swift */; };
 		4B97856F29425DEF00C3A270 /* DukeControlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B97856D29425DEF00C3A270 /* DukeControlViewController.xib */; };
 		4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */; };
+		4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */; };
 		4BE02A222923BD1C007C221C /* BleScannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */; };
 		4BE02A232923BD1C007C221C /* BleScannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A212923BD1C007C221C /* BleScannerCollectionViewCell.xib */; };
 		4BE02A252923E35C007C221C /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A242923E35C007C221C /* BleManager.swift */; };
@@ -61,6 +62,7 @@
 		4B97856C29425DEF00C3A270 /* DukeControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlViewController.swift; sourceTree = "<group>"; };
 		4B97856D29425DEF00C3A270 /* DukeControlViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DukeControlViewController.xib; sourceTree = "<group>"; };
 		4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlViewModel.swift; sourceTree = "<group>"; };
+		4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeModel.swift; sourceTree = "<group>"; };
 		4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		4BE02A212923BD1C007C221C /* BleScannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BleScannerCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BE02A242923E35C007C221C /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */,
 				4BE02A242923E35C007C221C /* BleManager.swift */,
+				4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				4BEEC696292299740007314C /* AppDelegate.swift in Sources */,
 				4BE02A222923BD1C007C221C /* BleScannerCollectionViewCell.swift in Sources */,
 				4BE02A3F29269039007C221C /* Constants.swift in Sources */,
+				4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */,
 				4BEEC698292299740007314C /* SceneDelegate.swift in Sources */,
 				4BEEC6CA29229F400007314C /* BleScannerViewModel.swift in Sources */,
 				4BE02A3B29267249007C221C /* Extensions.swift in Sources */,
