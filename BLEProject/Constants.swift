@@ -12,7 +12,7 @@ import CoreBluetooth
 struct Constants {
     struct ServiceIDs {
         static let servicesToDiscover = [Sonos.SONOS_GATT_SERVICE_UUID, BATTERY_SERVICE, DEVICE_INFORMATION]
-        static let characteristicsToDiscover = [Sonos.SONOS_GATT_IN_CHAR_UUID, Sonos.SONOS_GATT_OUT_CHAR_UUID, BATTERY_LEVEL, MODEL_NUMBER_STRING, MANUFACTURER_NAME_STRING]
+        static let characteristicsToDiscover = [BATTERY_LEVEL, MODEL_NUMBER_STRING, MANUFACTURER_NAME_STRING]
         struct Sonos {
             static let SONOS_GATT_SERVICE_UUID = CBUUID(string: "FE07")
             static let SONOS_GATT_IN_CHAR_UUID = CBUUID(string: "C44F42B1-F5CF-479B-B515-9F1BB0099C98")
@@ -20,6 +20,15 @@ struct Constants {
             static let BLE_TEST_CONTROLLER_PERIPHERAL_ID = "DEADBEEFFEED"
             static let BLE_TEST_MOCK_PERIPHERAL_ID = "CAFEFACEFEED"
             static let BLE_TEST_GATT_SERVER_ID = "FCFFAFEDB3BF33D7E9"
+            static let SETTINGS_TO_FETCH = [Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                  NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                  SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue]),
+                                            Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                  NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                  SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue]),
+                                            Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                  NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                  SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue])]
         }
         static let BATTERY_SERVICE = CBUUID(string:"0x180F")
         static let BATTERY_LEVEL = CBUUID(string: "0X2A19")
@@ -32,6 +41,7 @@ struct Constants {
         static let scannedDevicesChangedNotification = Notification.Name("scannedDevicesChanged")
         static let connectedToDevice = Notification.Name("connectedToDevice")
         static let connectedDeviceValueChanged = Notification.Name("connectedDeviceValueChanged")
+        static let dukeModelValueChanged = Notification.Name("dukeModelValueChanged")
     }
 }
 
@@ -73,7 +83,7 @@ enum HeadphoneManagementCommandId: UInt8 {
     case MANAGEMENT_SET_OPT_IN_FLAG = 0x04
 }
 
-enum SettingsCommandId: UInt8 {
+enum SettingsCommandId: UInt8, CaseIterable {
     //Namespace: Settings
 
     case SETTINGS_RESET_SETTINGS = 0x03

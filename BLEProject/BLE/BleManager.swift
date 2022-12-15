@@ -31,6 +31,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private var sonosOnlySearch: Bool = false
     private var peripheralToConnect: CBPeripheral?
     private var dataToWrite: Data?
+    private var inCharacteristic: CBCharacteristic?
+    private var connectionAttempt = true
     private var isDeviceConnected: ConnectionState = .disconnected {
         didSet {
             NotificationCenter.default.post(name: Constants.Notifications.connectedToDevice,
@@ -49,6 +51,12 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         didSet {
             NotificationCenter.default.post(name: Constants.Notifications.connectedDeviceValueChanged,
                                             object: self.connectedDevice)
+        }
+    }
+    var dukeModel = DukeModel() {
+        didSet {
+            NotificationCenter.default.post(name: Constants.Notifications.dukeModelValueChanged,
+                                            object: self.dukeModel)
         }
     }
 
@@ -104,6 +112,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         self.isDeviceConnected = .disconnected
         self.connectedDevice = nil
         self.peripheralToConnect = nil
+        self.connectionAttempt = true
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -112,8 +121,14 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
 
         for service in services {
-            service.peripheral?.discoverCharacteristics(Constants.ServiceIDs.characteristicsToDiscover,
-                                                       for: service)
+            // If the service is Sonos one, discover Sonos characteristics. Otherwise search for general ones.
+            if service.uuid == Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID {
+                service.peripheral?.discoverCharacteristics([Constants.ServiceIDs.Sonos.SONOS_GATT_IN_CHAR_UUID, Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID],
+                                                             for: service)
+            } else {
+                service.peripheral?.discoverCharacteristics(Constants.ServiceIDs.characteristicsToDiscover,
+                                                            for: service)
+            }
         }
     }
 
@@ -123,24 +138,34 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
 
         for characteristic in characteristics {
+            // General characteristics (Battery Level, Device information)
             if Constants.ServiceIDs.characteristicsToDiscover.contains(characteristic.uuid) {
                 peripheral.setNotifyValue(true, for: characteristic)
                 peripheral.readValue(for: characteristic)
             }
+            // Sonos Out Characteristics
             if Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID == characteristic.uuid {
-                //TODO: Read Sonos characteristics
+                peripheral.setNotifyValue(true, for: characteristic)
+                peripheral.readValue(for: characteristic)
             }
+            // Sonos In Characteristics
             if Constants.ServiceIDs.Sonos.SONOS_GATT_IN_CHAR_UUID == characteristic.uuid {
-                // If dataToWrite was set, write the data to characteristic
-                if let dataToWrite {
-                    peripheral.writeValue(dataToWrite, for: characteristic, type: .withoutResponse)
+                self.inCharacteristic = characteristic
+                // If it's first connection and peripheral is Duke attempt - fetch current Duke settings
+                if self.connectionAttempt && peripheral.name == "Pixel 6a" {
+                    self.getDukeCurrentSettings()
+                    self.connectionAttempt = false
                 }
             }
         }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        self.handleCharacteristics(characteristic: characteristic)
+        if Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID == characteristic.uuid {
+            self.gattServerCharacteristicsHandler(characteristic: characteristic)
+        } else {
+            self.handleCharacteristics(characteristic: characteristic)
+        }
     }
 
     /// Filters advertisementData to return only data we are interested in displaying with key as AdvertisementDataKeys
@@ -161,7 +186,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     /// Disconnect device if connected and connect if not.
     /// - Parameter device: Device to connect/disconnect to
     func updateConnectionStatus(device: BleDeviceModel) {
-        switch isDeviceConnected {
+        switch self.isDeviceConnected {
         case .disconnected:
             self.peripheralToConnect = device.peripheral
             // Have to restart scanning process since we stopped it when connected to the device for the first time.
@@ -177,28 +202,32 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     /// - Parameters:
     ///   - characteristic: CBCharacteristic
     func handleCharacteristics(characteristic: CBCharacteristic) {
-        if let connectedDevice {
-            var updatedData = connectedDevice.bleData
-            if Constants.ServiceIDs.BATTERY_LEVEL == characteristic.uuid {
+        if let connectedDevice,
+           let bleData = connectedDevice.bleData {
+            // Verify for each characteristic that BleDeviceModel.bleData doesn't already contain AdvertisementData that we are interested in
+            var updatedData = bleData
+            if Constants.ServiceIDs.BATTERY_LEVEL == characteristic.uuid &&
+                !(bleData.contains(where: {$0.key == AdvertisementDataKeys.characteristicBatteryLevel})) {
                 var byte:UInt8 = 0
                 characteristic.value?.copyBytes(to: &byte, count: 1)
                 let valueInInt = Int(byte)
-                updatedData?.append(BleData(key: AdvertisementDataKeys.characteristicBatteryLevel,
+                updatedData.append(BleData(key: AdvertisementDataKeys.characteristicBatteryLevel,
                                             value: String(valueInInt)))
             }
-            if Constants.ServiceIDs.MODEL_NUMBER_STRING == characteristic.uuid {
+            if Constants.ServiceIDs.MODEL_NUMBER_STRING == characteristic.uuid &&
+                !(bleData.contains(where: {$0.key == AdvertisementDataKeys.characteristicModelName})){
                 if let value = characteristic.value {
-                    updatedData?.append(BleData(key: AdvertisementDataKeys.characteristicModelName,
+                    updatedData.append(BleData(key: AdvertisementDataKeys.characteristicModelName,
                                                 value: String(data: value, encoding: .utf8) as Any))
                 }
 
             }
-            if Constants.ServiceIDs.MANUFACTURER_NAME_STRING == characteristic.uuid {
+            if Constants.ServiceIDs.MANUFACTURER_NAME_STRING == characteristic.uuid &&
+                !(bleData.contains(where: {$0.key == AdvertisementDataKeys.characteristicManufacturerName})){
                 if let value = characteristic.value {
-                    updatedData?.append(BleData(key: AdvertisementDataKeys.characteristicManufacturerName,
+                    updatedData.append(BleData(key: AdvertisementDataKeys.characteristicManufacturerName,
                                                 value: String(data: value, encoding: .utf8) as Any))
                 }
-
             }
             self.connectedDevice = BleDeviceModel(peripheral: connectedDevice.peripheral,
                                                   name: connectedDevice.name,
@@ -206,9 +235,49 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
 
+    func gattServerCharacteristicsHandler(characteristic: CBCharacteristic) {
+        if let value = characteristic.value {
+            // Byte in position "2" holds the information what Setting was called.
+            // TODO: Need to expand this for more scenarios when adding more info to local Duke Controller.
+            switch value[2] {
+            case SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue:
+                self.dukeModel.deviceName = String(data: value[4...], encoding: .utf8)
+            case SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue:
+                self.dukeModel.ancMode = value[3].boolValue
+            case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
+                self.dukeModel.headTrackingMode = value[3].boolValue
+            default:
+                break
+            }
+        }
+    }
+
+    func getDukeCurrentSettings() {
+        self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue]))
+        self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue]))
+        self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue]))
+    }
+
     func writeData(data: Data) {
-        self.dataToWrite = data
-        self.connectedDevice?.peripheral.discoverServices([Constants.ServiceIDs.Sonos.SONOS_GATT_IN_CHAR_UUID])
+        if self.connectedDevice?.peripheral.state != .connected {
+            // Return if trying to writeData to disconnected device
+            return
+        }
+        if let inCharacteristic {
+            self.connectedDevice?.peripheral.writeValue(data, for: inCharacteristic, type: .withoutResponse)
+            self.connectedDevice?.peripheral.discoverServices([Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID])
+        }
     }
 }
 
+extension UInt8 {
+    var boolValue: Bool {
+        return self != 0
+    }
+}

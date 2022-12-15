@@ -8,8 +8,22 @@
 import Foundation
 
 class DukeControlViewModel: ViewModel, ViewModelProtocol {
+    var dukeModel: DukeModel? {
+        didSet {
+            self.update?(.reloadDukeValues)
+        }
+    }
+    var dukeModelObserver: NSObjectProtocol?
+
     var update: ((DukeControlViewModel.UpdateType) -> Void)?
     enum UpdateType {
+        case dukeNotConnected
+        case reloadDukeValues
+    }
+
+    override init() {
+        super.init()
+        self.dukeModelValueChanged()
     }
 
     func writeData(setting: CurrentlyUsedSettings, value: Any?) {
@@ -38,5 +52,17 @@ class DukeControlViewModel: ViewModel, ViewModelProtocol {
             }
             BleManager.shared.writeData(data: dataToWrite)
         }
+    }
+
+    private func dukeModelValueChanged() {
+        self.dukeModelObserver = NotificationCenter.default.addObserver(forName: Constants.Notifications.dukeModelValueChanged,
+                                                                              object: nil,
+                                                                              queue: nil,
+                                                                              using: { [weak self] note in
+            // If object is of dukeModel is nil don't do anything
+            if note.object != nil {
+                self?.dukeModel = note.object as? DukeModel
+            }
+        })
     }
 }
