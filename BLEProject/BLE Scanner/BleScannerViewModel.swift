@@ -7,12 +7,12 @@
 
 import Foundation
 
-class MainViewModel: ViewModel, ViewModelProtocol {
+class BleScannerViewModel: ViewModel, ViewModelProtocol {
     private var ble: BleManager?
     private var peripheralsObserver: NSObjectProtocol?
     private var sonosOnlySearch: Bool?
 
-    var update: ((MainViewModel.UpdateType) -> Void)?
+    var update: ((BleScannerViewModel.UpdateType) -> Void)?
     enum UpdateType {
         case landing
         case loading

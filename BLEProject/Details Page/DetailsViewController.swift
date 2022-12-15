@@ -42,7 +42,7 @@ class DetailsViewController: ModelledViewController<DetailsViewModel> {
                                                      style: .plain,
                                                      target: self,
                                                      action: nil)
-        self.connectRightBarButton = UIBarButtonItem(title: self.viewModel.isConnected ? "Disconnect" : "Connect",
+        self.connectRightBarButton = UIBarButtonItem(title: self.viewModel.isConnected == .connected ? "Disconnect" : "Connect",
                                                      style: .plain,
                                                      target: self,
                                                      action: #selector(didTapConnectionBtn))

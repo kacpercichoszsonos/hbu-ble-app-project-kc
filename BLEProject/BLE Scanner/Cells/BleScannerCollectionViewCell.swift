@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
+class BleScannerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func setupCell(peripheralName: String?) {
