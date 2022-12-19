@@ -271,13 +271,6 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         if let inCharacteristic {
             self.connectedDevice?.peripheral.writeValue(data, for: inCharacteristic, type: .withoutResponse)
-            self.connectedDevice?.peripheral.discoverServices([Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID])
         }
-    }
-}
-
-extension UInt8 {
-    var boolValue: Bool {
-        return self != 0
     }
 }
