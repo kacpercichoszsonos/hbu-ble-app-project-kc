@@ -26,3 +26,9 @@ public extension Thread {
         }
     }
 }
+
+extension UInt8 {
+    var boolValue: Bool {
+        return self != 0
+    }
+}
