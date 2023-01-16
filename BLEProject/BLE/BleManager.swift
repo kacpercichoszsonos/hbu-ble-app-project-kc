@@ -23,7 +23,7 @@ enum ConnectionState {
     case connected
 }
 
-class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, ObservableObject {
     static let shared = BleManager()
 
     private var centralManager: CBCentralManager!

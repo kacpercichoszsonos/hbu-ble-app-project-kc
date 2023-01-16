@@ -6,32 +6,21 @@
 //
 
 import Foundation
+import SwiftUI
 
-class BleScannerViewModel: ViewModel, ViewModelProtocol {
+class BleScannerViewModel: ObservableObject {
     private var ble: BleManager?
     private var peripheralsObserver: NSObjectProtocol?
-    private var sonosOnlySearch: Bool?
+    var sonosOnlySearch: Bool = false
 
-    var update: ((BleScannerViewModel.UpdateType) -> Void)?
-    enum UpdateType {
-        case landing
-        case loading
-        case reload
-    }
+    @Published var devices = [BleDeviceModel]()
 
-    var devices: [BleDeviceModel]? {
-        didSet {
-            self.update?(.reload)
-        }
-    }
-
-    override init() {
-        super.init()
+    init() {
         self.peripheralsObserver = NotificationCenter.default.addObserver(forName: Constants.Notifications.scannedDevicesChangedNotification,
                                                                           object: nil,
                                                                           queue: nil,
                                                                           using: { [weak self] note in
-            self?.devices = note.object as? [BleDeviceModel]
+            self?.devices = note.object as! [BleDeviceModel]
         })
     }
 
@@ -41,9 +30,8 @@ class BleScannerViewModel: ViewModel, ViewModelProtocol {
 
     func startScanning() {
         // Setting short 1 second delay with spinner while loading BLE devices
-        self.update?(.loading)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.ble = BleManager(sonosOnlySearch: self.sonosOnlySearch ?? false)
+            self.ble = BleManager(sonosOnlySearch: self.sonosOnlySearch)
         }
     }
 }
