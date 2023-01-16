@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E5F1C29707B210093D20D /* BleScannerView.swift */; };
 		4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */; };
 		4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EF29375EFB00D07F49 /* ViewModel.swift */; };
 		4B97856A29425D1E00C3A270 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97856929425D1E00C3A270 /* TabBarController.swift */; };
@@ -33,8 +34,6 @@
 		4BEEC6AD292299770007314C /* BLEProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6AC292299770007314C /* BLEProjectTests.swift */; };
 		4BEEC6B7292299770007314C /* BLEProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6B6292299770007314C /* BLEProjectUITests.swift */; };
 		4BEEC6B9292299770007314C /* BLEProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6B8292299770007314C /* BLEProjectUITestsLaunchTests.swift */; };
-		4BEEC6C729229F220007314C /* BleScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C529229F220007314C /* BleScannerViewController.swift */; };
-		4BEEC6C829229F220007314C /* BleScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C629229F220007314C /* BleScannerViewController.xib */; };
 		4BEEC6CA29229F400007314C /* BleScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C929229F400007314C /* BleScannerViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B3E5F1C29707B210093D20D /* BleScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerView.swift; sourceTree = "<group>"; };
 		4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDeviceModel.swift; sourceTree = "<group>"; };
 		4B8B73EF29375EFB00D07F49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4B97856929425D1E00C3A270 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -86,8 +86,6 @@
 		4BEEC6B2292299770007314C /* BLEProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC6B6292299770007314C /* BLEProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEProjectUITests.swift; sourceTree = "<group>"; };
 		4BEEC6B8292299770007314C /* BLEProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4BEEC6C529229F220007314C /* BleScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerViewController.swift; sourceTree = "<group>"; };
-		4BEEC6C629229F220007314C /* BleScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BleScannerViewController.xib; sourceTree = "<group>"; };
 		4BEEC6C929229F400007314C /* BleScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,9 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				4BE02A1F2923BD00007C221C /* Cells */,
-				4BEEC6C529229F220007314C /* BleScannerViewController.swift */,
-				4BEEC6C629229F220007314C /* BleScannerViewController.xib */,
 				4BEEC6C929229F400007314C /* BleScannerViewModel.swift */,
+				4B3E5F1C29707B210093D20D /* BleScannerView.swift */,
 			);
 			path = "BLE Scanner";
 			sourceTree = "<group>";
@@ -349,7 +346,6 @@
 			files = (
 				4B97856F29425DEF00C3A270 /* DukeControlViewController.xib in Resources */,
 				4BEEC6A2292299760007314C /* LaunchScreen.storyboard in Resources */,
-				4BEEC6C829229F220007314C /* BleScannerViewController.xib in Resources */,
 				4BE02A3929266FCA007C221C /* DetailsViewController.xib in Resources */,
 				4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */,
 				4BEEC69F292299760007314C /* Assets.xcassets in Resources */,
@@ -381,7 +377,7 @@
 				4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */,
 				4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */,
 				4B97856A29425D1E00C3A270 /* TabBarController.swift in Sources */,
-				4BEEC6C729229F220007314C /* BleScannerViewController.swift in Sources */,
+				4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */,
 				4BE02A252923E35C007C221C /* BleManager.swift in Sources */,
 				4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */,
 				4B97856E29425DEF00C3A270 /* DukeControlViewController.swift in Sources */,
@@ -494,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -548,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

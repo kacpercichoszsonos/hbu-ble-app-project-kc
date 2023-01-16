@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DukeModel {
+class DukeModel: ObservableObject {
     var deviceName: String?
     var ancMode: Bool?
     var headTrackingMode: Bool?
