@@ -16,7 +16,8 @@ struct BleDeviceModel: Identifiable {
     var bleData: [BleData]?
 }
 
-struct BleData {
+struct BleData: Identifiable {
+    var id: AdvertisementDataKeys { key }
     var key: AdvertisementDataKeys
     var value: Any
 }
