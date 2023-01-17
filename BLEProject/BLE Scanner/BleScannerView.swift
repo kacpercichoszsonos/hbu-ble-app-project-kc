@@ -29,10 +29,13 @@ struct BleScannerView: View {
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.roundedRectangle)
-        }
-        List() {
-            ForEach(self.viewModel.devices) { device in
-                Text(device.name)
+            List() {
+                ForEach(self.viewModel.devices) { device in
+                    let detailsViewModel = DetailsViewModel(device: device)
+                    NavigationLink(destination: DetailsView(viewModel: detailsViewModel)) {
+                        Text(device.name)
+                    }
+                }
             }
         }
     }

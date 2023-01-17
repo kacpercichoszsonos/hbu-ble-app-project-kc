@@ -6,32 +6,17 @@
 //
 
 import Foundation
+import CoreBluetooth
 
-class DetailsViewModel: ViewModel, ViewModelProtocol {
-    var device: BleDeviceModel {
-        didSet {
-            self.update?(.reload)
-        }
-    }
-
-    var isConnected: ConnectionState = .disconnected {
-        didSet {
-            self.update?(.reload)
-        }
-    }
+class DetailsViewModel: ObservableObject {
+    @Published var device: BleDeviceModel
+    @Published var isConnected: ConnectionState = .disconnected
 
     var connectionObserver: NSObjectProtocol?
     var connectedDeviceObserver: NSObjectProtocol?
 
-    var update: ((DetailsViewModel.UpdateType) -> Void)?
-    enum UpdateType {
-        case reload
-        case loading
-    }
-
     init(device: BleDeviceModel) {
         self.device = device
-        super.init()
         self.isDeviceConnected()
         self.connectedDeviceValueChanged()
     }
@@ -58,7 +43,26 @@ class DetailsViewModel: ViewModel, ViewModelProtocol {
     }
 
     func connectionBtnTapped() {
-        self.update?(.loading)
         BleManager.shared.updateConnectionStatus(device: self.device)
+    }
+
+    func setupCell(bleData: BleData?) -> (title: String, description: String) {
+        switch bleData?.key {
+        case .kCBAdvDataIsConnectable:
+            return (title: "Is device connectable?", description: String(bleData?.value as? Bool ?? false).capitalized)
+        case .kCBAdvDataLocalName:
+            return (title: "Device name:", description: bleData?.value as? String ?? "")
+        case .kCBAdvDataServiceUUIDs:
+            return (title: "Service UUID:", description: ((bleData?.value as? Array<Any>)?.first as? CBUUID)!.uuidString)
+        case .characteristicBatteryLevel:
+            return (title: "Battery level:", description: bleData?.value as? String ?? "")
+        case .characteristicManufacturerName:
+            return (title: "Manufacturer Name:", description: bleData?.value as? String ?? "")
+        case .characteristicModelName:
+            return (title: "Model Name: ", description: bleData?.value as? String ?? "")
+        case .none:
+            // In case for some reason we will get some data without the known key, let's populate cell with N/A
+            return (title: "N/A", description: "N/A")
+        }
     }
 }

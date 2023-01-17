@@ -161,7 +161,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID == characteristic.uuid {
+        if Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID == characteristic.uuid && peripheral.name == "Pixel 6a" {
             self.gattServerCharacteristicsHandler(characteristic: characteristic)
         } else {
             self.handleCharacteristics(characteristic: characteristic)
