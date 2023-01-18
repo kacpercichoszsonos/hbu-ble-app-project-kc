@@ -7,9 +7,22 @@
 
 import SwiftUI
 
+enum CurrentlyUsedSettings {
+    case anc
+    case headTracking
+    case deviceName
+}
+
 struct DukeControlView: View {
+    @State private var deviceName = ""
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Connect to Duke")
+        Form {
+            TextField(text: $deviceName ,prompt: Text("Enter device name")) {
+                Text("Device name")
+            }
+        }
     }
 }
 

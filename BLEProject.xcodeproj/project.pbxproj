@@ -10,8 +10,6 @@
 		4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E5F1C29707B210093D20D /* BleScannerView.swift */; };
 		4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */; };
 		4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EF29375EFB00D07F49 /* ViewModel.swift */; };
-		4B97856E29425DEF00C3A270 /* DukeControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B97856C29425DEF00C3A270 /* DukeControlViewController.swift */; };
-		4B97856F29425DEF00C3A270 /* DukeControlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B97856D29425DEF00C3A270 /* DukeControlViewController.xib */; };
 		4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */; };
 		4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */; };
 		4BE02A222923BD1C007C221C /* BleScannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */; };
@@ -58,8 +56,6 @@
 		4B3E5F1C29707B210093D20D /* BleScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerView.swift; sourceTree = "<group>"; };
 		4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDeviceModel.swift; sourceTree = "<group>"; };
 		4B8B73EF29375EFB00D07F49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		4B97856C29425DEF00C3A270 /* DukeControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlViewController.swift; sourceTree = "<group>"; };
-		4B97856D29425DEF00C3A270 /* DukeControlViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DukeControlViewController.xib; sourceTree = "<group>"; };
 		4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlViewModel.swift; sourceTree = "<group>"; };
 		4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeModel.swift; sourceTree = "<group>"; };
 		4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -137,8 +133,6 @@
 		4B97856B29425D8C00C3A270 /* Duke Control */ = {
 			isa = PBXGroup;
 			children = (
-				4B97856C29425DEF00C3A270 /* DukeControlViewController.swift */,
-				4B97856D29425DEF00C3A270 /* DukeControlViewController.xib */,
 				4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */,
 				4BF887F72975CDD900856586 /* DukeControlView.swift */,
 			);
@@ -344,7 +338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B97856F29425DEF00C3A270 /* DukeControlViewController.xib in Resources */,
 				4BEEC6A2292299760007314C /* LaunchScreen.storyboard in Resources */,
 				4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */,
 				4BEEC69F292299760007314C /* Assets.xcassets in Resources */,
@@ -380,7 +373,6 @@
 				4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */,
 				4BE02A252923E35C007C221C /* BleManager.swift in Sources */,
 				4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */,
-				4B97856E29425DEF00C3A270 /* DukeControlViewController.swift in Sources */,
 				4BEEC696292299740007314C /* AppDelegate.swift in Sources */,
 				4BE02A222923BD1C007C221C /* BleScannerCollectionViewCell.swift in Sources */,
 				4BE02A3F29269039007C221C /* Constants.swift in Sources */,

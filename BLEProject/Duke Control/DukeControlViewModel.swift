@@ -7,23 +7,12 @@
 
 import Foundation
 
-class DukeControlViewModel: ViewModel, ViewModelProtocol {
-    var dukeModel: DukeModel? {
-        didSet {
-            self.update?(.reloadDukeValues)
-        }
-    }
+class DukeControlViewModel: ObservableObject {
+    var dukeModel: DukeModel?
     var dukeModelObserver: NSObjectProtocol?
+    var isDukeConnected: Bool = true
 
-    var update: ((DukeControlViewModel.UpdateType) -> Void)?
-    enum UpdateType {
-        case dukeNotConnected
-        case reloadDukeValues
-    }
-
-    override init() {
-        super.init()
-        self.dukeModelValueChanged()
+    init() {
     }
 
     func writeData(setting: CurrentlyUsedSettings, value: Any?) {
@@ -56,9 +45,9 @@ class DukeControlViewModel: ViewModel, ViewModelProtocol {
 
     private func dukeModelValueChanged() {
         self.dukeModelObserver = NotificationCenter.default.addObserver(forName: Constants.Notifications.dukeModelValueChanged,
-                                                                              object: nil,
-                                                                              queue: nil,
-                                                                              using: { [weak self] note in
+                                                                        object: nil,
+                                                                        queue: nil,
+                                                                        using: { [weak self] note in
             // If object is of dukeModel is nil don't do anything
             if note.object != nil {
                 self?.dukeModel = note.object as? DukeModel

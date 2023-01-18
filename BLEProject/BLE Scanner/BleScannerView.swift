@@ -31,8 +31,7 @@ struct BleScannerView: View {
             .buttonBorderShape(.roundedRectangle)
             List() {
                 ForEach(self.viewModel.devices) { device in
-                    let detailsViewModel = DetailsViewModel(device: device)
-                    NavigationLink(destination: DetailsView(viewModel: detailsViewModel)) {
+                    NavigationLink(destination: DetailsView(device: device)) {
                         Text(device.name)
                     }
                 }
