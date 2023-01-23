@@ -12,16 +12,12 @@
 		4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EF29375EFB00D07F49 /* ViewModel.swift */; };
 		4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */; };
 		4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */; };
-		4BE02A222923BD1C007C221C /* BleScannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */; };
-		4BE02A232923BD1C007C221C /* BleScannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A212923BD1C007C221C /* BleScannerCollectionViewCell.xib */; };
 		4BE02A252923E35C007C221C /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A242923E35C007C221C /* BleManager.swift */; };
 		4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */; };
 		4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */; };
 		4BE02A3B29267249007C221C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3A29267249007C221C /* Extensions.swift */; };
 		4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3C29267866007C221C /* DetailsViewModel.swift */; };
 		4BE02A3F29269039007C221C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3E29269039007C221C /* Constants.swift */; };
-		4BE02A442927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */; };
-		4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */; };
 		4BEBD222297EB77100743617 /* Symphony in Frameworks */ = {isa = PBXBuildFile; productRef = 4BEBD221297EB77100743617 /* Symphony */; };
 		4BEEC696292299740007314C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC695292299740007314C /* AppDelegate.swift */; };
 		4BEEC698292299740007314C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC697292299740007314C /* SceneDelegate.swift */; };
@@ -59,16 +55,12 @@
 		4B8B73EF29375EFB00D07F49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlViewModel.swift; sourceTree = "<group>"; };
 		4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeModel.swift; sourceTree = "<group>"; };
-		4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerCollectionViewCell.swift; sourceTree = "<group>"; };
-		4BE02A212923BD1C007C221C /* BleScannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BleScannerCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BE02A242923E35C007C221C /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelledViewController.swift; sourceTree = "<group>"; };
 		4BE02A3A29267249007C221C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4BE02A3C29267866007C221C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		4BE02A3E29269039007C221C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BEBD21F297EB70C00743617 /* Symphony */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Symphony; sourceTree = "<group>"; };
 		4BEEC692292299740007314C /* BLEProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC695292299740007314C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,9 +108,8 @@
 		4B8B73ED292E7CCF00D07F49 /* BLE Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				4BE02A1F2923BD00007C221C /* Cells */,
-				4BEEC6C929229F400007314C /* BleScannerViewModel.swift */,
 				4B3E5F1C29707B210093D20D /* BleScannerView.swift */,
+				4BEEC6C929229F400007314C /* BleScannerViewModel.swift */,
 			);
 			path = "BLE Scanner";
 			sourceTree = "<group>";
@@ -136,19 +127,10 @@
 		4B97856B29425D8C00C3A270 /* Duke Control */ = {
 			isa = PBXGroup;
 			children = (
-				4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */,
 				4BF887F72975CDD900856586 /* DukeControlView.swift */,
+				4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */,
 			);
 			path = "Duke Control";
-			sourceTree = "<group>";
-		};
-		4BE02A1F2923BD00007C221C /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				4BE02A202923BD1C007C221C /* BleScannerCollectionViewCell.swift */,
-				4BE02A212923BD1C007C221C /* BleScannerCollectionViewCell.xib */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		4BE02A2A2923F127007C221C /* MVVM */ = {
@@ -164,20 +146,10 @@
 		4BE02A3529266F92007C221C /* Details Page */ = {
 			isa = PBXGroup;
 			children = (
-				4BE02A412927E5BD007C221C /* Cells */,
-				4BE02A3C29267866007C221C /* DetailsViewModel.swift */,
 				4BF887F329758A6700856586 /* DetailsView.swift */,
+				4BE02A3C29267866007C221C /* DetailsViewModel.swift */,
 			);
 			path = "Details Page";
-			sourceTree = "<group>";
-		};
-		4BE02A412927E5BD007C221C /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */,
-				4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		4BEBD220297EB76A00743617 /* Frameworks */ = {
@@ -354,9 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEEC6A2292299760007314C /* LaunchScreen.storyboard in Resources */,
-				4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */,
 				4BEEC69F292299760007314C /* Assets.xcassets in Resources */,
-				4BE02A232923BD1C007C221C /* BleScannerCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,14 +359,12 @@
 				4BE02A252923E35C007C221C /* BleManager.swift in Sources */,
 				4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */,
 				4BEEC696292299740007314C /* AppDelegate.swift in Sources */,
-				4BE02A222923BD1C007C221C /* BleScannerCollectionViewCell.swift in Sources */,
 				4BE02A3F29269039007C221C /* Constants.swift in Sources */,
 				4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */,
 				4BEEC698292299740007314C /* SceneDelegate.swift in Sources */,
 				4BEEC6CA29229F400007314C /* BleScannerViewModel.swift in Sources */,
 				4BE02A3B29267249007C221C /* Extensions.swift in Sources */,
 				4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */,
-				4BE02A442927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift in Sources */,
 				4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */,
 				4BF887F62975CD1A00856586 /* TabBarView.swift in Sources */,
 				4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */,

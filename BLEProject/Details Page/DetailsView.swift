@@ -38,7 +38,7 @@ struct DetailsView: View {
         .navigationTitle(viewModel.device.name)
         .toolbar {
             ToolbarItem {
-                Button(self.viewModel.isConnected == .connected ? "Disconnect" : "Connect") {
+                Button(self.viewModel.isConnected == .connected ? Constants.Strings.DetailsView.detailsViewDisconnectButtonString : Constants.Strings.DetailsView.detailsViewConnectButtonString) {
                     self.viewModel.connectionBtnTapped()
                 }
             }

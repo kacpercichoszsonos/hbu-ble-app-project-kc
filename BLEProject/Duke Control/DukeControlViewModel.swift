@@ -62,4 +62,13 @@ class DukeControlViewModel: ObservableObject {
             }
         })
     }
+
+    func setupView() -> (ancMode: Bool, headTrackingMode: Bool) {
+        if let dukeModel = self.dukeModel,
+           let ancMode = dukeModel.ancMode,
+           let headTrackingMode = dukeModel.headTrackingMode {
+            return (ancMode, headTrackingMode)
+        }
+        return (false, false)
+    }
 }

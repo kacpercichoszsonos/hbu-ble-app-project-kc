@@ -23,9 +23,9 @@ struct DukeControlView: View {
         if self.viewModel.isDukeConnected {
             Form {
                 HStack {
-                    Text("Product name: ")
+                    Text(Constants.Strings.DukeControlView.dukeControlViewProductNameString)
                     TextField(text: $deviceName ,
-                              prompt: Text(self.viewModel.dukeModel?.deviceName ?? "Enter device name")) {
+                              prompt: Text(self.viewModel.dukeModel?.deviceName ?? Constants.Strings.DukeControlView.dukeControlViewProductNameTextfieldPrompt)) {
                         Text("Device name")
                     }.onSubmit {
                         self.viewModel.writeData(setting: .deviceName, value: deviceName)
@@ -33,35 +33,24 @@ struct DukeControlView: View {
                 }
                 HStack {
                     Toggle(isOn: $ancMode) {
-                        Text("ANC Mode: ")
+                        Text(Constants.Strings.DukeControlView.dukeControlViewAncModeString)
                     }.onChange(of: ancMode) { value in
                         self.viewModel.writeData(setting: .anc, value: value)
                     }
                 }
                 HStack {
                     Toggle(isOn: $headTrackingMode) {
-                        Text("Head tracking Mode: ")
+                        Text(Constants.Strings.DukeControlView.dukeControlViewHeadTrackingModeString)
                     }.onChange(of: headTrackingMode) { value in
                         self.viewModel.writeData(setting: .headTracking, value: value)
                     }
                 }
             }.onAppear {
-                self.setupView()
+                (self.ancMode, self.headTrackingMode) = self.viewModel.setupView()
             }
         } else {
-            Text("Connect to Duke")
+            Text(Constants.Strings.DukeControlView.dukeControlViewConnectToDukeString)
         }
-    }
-
-    private func setupView() {
-        guard let dukeModel = self.viewModel.dukeModel,
-              let ancMode = dukeModel.ancMode,
-              let headTrackingMode = dukeModel.headTrackingMode else {
-            return
-        }
-
-        self.ancMode = ancMode
-        self.headTrackingMode = headTrackingMode
     }
 }
 

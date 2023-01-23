@@ -43,6 +43,24 @@ struct Constants {
         static let connectedDeviceValueChanged = Notification.Name("connectedDeviceValueChanged")
         static let dukeModelValueChanged = Notification.Name("dukeModelValueChanged")
     }
+
+    struct Strings {
+        struct BleScannerView {
+            static let bleScannerViewToggleString = "Search for Sonos only devices"
+            static let bleScannerViewStartScanningButtonString = "Start scanning"
+        }
+        struct DukeControlView {
+            static let dukeControlViewProductNameString = "Product name:"
+            static let dukeControlViewProductNameTextfieldPrompt = "Enter device name"
+            static let dukeControlViewAncModeString = "ANC Mode:"
+            static let dukeControlViewHeadTrackingModeString = "Head tracking mode:"
+            static let dukeControlViewConnectToDukeString = "Connect to Duke"
+        }
+        struct DetailsView {
+            static let detailsViewDisconnectButtonString = "Disconnect"
+            static let detailsViewConnectButtonString = "Connect"
+        }
+    }
 }
 
 enum CommandType: UInt8 {
