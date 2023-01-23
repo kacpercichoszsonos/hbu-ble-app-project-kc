@@ -11,7 +11,7 @@ struct TabBarView: View {
     var body: some View {
         TabView {
             NavigationView {
-                DukeControlView()
+                DukeControlView(viewModel: DukeControlViewModel())
             }
             .tabItem {
                 Label("Duke", systemImage: "headphones")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Symphony
 
 struct BleScannerView: View {
     @StateObject private var viewModel: BleScannerViewModel

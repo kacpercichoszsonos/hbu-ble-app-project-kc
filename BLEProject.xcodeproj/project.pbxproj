@@ -22,6 +22,7 @@
 		4BE02A3F29269039007C221C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3E29269039007C221C /* Constants.swift */; };
 		4BE02A442927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */; };
 		4BE02A452927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */; };
+		4BEBD222297EB77100743617 /* Symphony in Frameworks */ = {isa = PBXBuildFile; productRef = 4BEBD221297EB77100743617 /* Symphony */; };
 		4BEEC696292299740007314C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC695292299740007314C /* AppDelegate.swift */; };
 		4BEEC698292299740007314C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC697292299740007314C /* SceneDelegate.swift */; };
 		4BEEC69F292299760007314C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC69E292299760007314C /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		4BE02A3E29269039007C221C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4BE02A422927E5E8007C221C /* DeviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		4BE02A432927E5E8007C221C /* DeviceDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
+		4BEBD21F297EB70C00743617 /* Symphony */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Symphony; sourceTree = "<group>"; };
 		4BEEC692292299740007314C /* BLEProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC695292299740007314C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BEEC697292299740007314C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BEBD222297EB77100743617 /* Symphony in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,13 +180,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		4BEBD220297EB76A00743617 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4BEEC689292299740007314C = {
 			isa = PBXGroup;
 			children = (
+				4BEBD21F297EB70C00743617 /* Symphony */,
 				4BEEC694292299740007314C /* BLEProject */,
 				4BEEC6AB292299770007314C /* BLEProjectTests */,
 				4BEEC6B5292299770007314C /* BLEProjectUITests */,
 				4BEEC693292299740007314C /* Products */,
+				4BEBD220297EB76A00743617 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,6 +262,9 @@
 			dependencies = (
 			);
 			name = BLEProject;
+			packageProductDependencies = (
+				4BEBD221297EB77100743617 /* Symphony */,
+			);
 			productName = BLEProject;
 			productReference = 4BEEC692292299740007314C /* BLEProject.app */;
 			productType = "com.apple.product-type.application";
@@ -720,6 +735,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4BEBD221297EB77100743617 /* Symphony */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Symphony;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4BEEC68A292299740007314C /* Project object */;
 }

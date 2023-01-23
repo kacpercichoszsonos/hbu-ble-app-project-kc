@@ -42,8 +42,11 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
 
     var scannedDevices: [BleDeviceModel] = [] {
         didSet {
-            NotificationCenter.default.post(name: Constants.Notifications.scannedDevicesChangedNotification,
-                                            object: self.scannedDevices)
+            // Make sure we don't post scannedDevices to BleScannerView when we are connected to the peripheral
+            if self.peripheralToConnect == nil {
+                NotificationCenter.default.post(name: Constants.Notifications.scannedDevicesChangedNotification,
+                                                object: self.scannedDevices)
+            }
         }
     }
 
@@ -53,7 +56,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                                             object: self.connectedDevice)
         }
     }
-    var dukeModel = DukeModel() {
+    var dukeModel: DukeModel? {
         didSet {
             NotificationCenter.default.post(name: Constants.Notifications.dukeModelValueChanged,
                                             object: self.dukeModel)
@@ -239,16 +242,18 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         if let value = characteristic.value {
             // Byte in position "2" holds the information what Setting was called.
             // TODO: Need to expand this for more scenarios when adding more info to local Duke Controller.
+            let dukeModel = self.dukeModel ?? DukeModel()
             switch value[2] {
             case SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue:
-                self.dukeModel.deviceName = String(data: value[4...], encoding: .utf8)
+                dukeModel.deviceName = String(data: value[4...], encoding: .utf8)
             case SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue:
-                self.dukeModel.ancMode = value[3].boolValue
+                dukeModel.ancMode = value[3].boolValue
             case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
-                self.dukeModel.headTrackingMode = value[3].boolValue
+                dukeModel.headTrackingMode = value[3].boolValue
             default:
                 break
             }
+            self.dukeModel = dukeModel
         }
     }
 

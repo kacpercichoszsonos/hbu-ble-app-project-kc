@@ -8,11 +8,16 @@
 import Foundation
 
 class DukeControlViewModel: ObservableObject {
-    var dukeModel: DukeModel?
+    @Published var dukeModel: DukeModel? {
+        didSet {
+            self.isDukeConnected = (dukeModel != nil) ? true : false
+        }
+    }
+    @Published var isDukeConnected: Bool = false
     var dukeModelObserver: NSObjectProtocol?
-    var isDukeConnected: Bool = true
 
     init() {
+        self.dukeModelValueChanged()
     }
 
     func writeData(setting: CurrentlyUsedSettings, value: Any?) {
@@ -49,8 +54,11 @@ class DukeControlViewModel: ObservableObject {
                                                                         queue: nil,
                                                                         using: { [weak self] note in
             // If object is of dukeModel is nil don't do anything
-            if note.object != nil {
-                self?.dukeModel = note.object as? DukeModel
+            if let dukeObject = note.object as? DukeModel,
+               dukeObject.deviceName != nil,
+               dukeObject.ancMode != nil,
+               dukeObject.headTrackingMode != nil {
+                self?.dukeModel = dukeObject
             }
         })
     }
