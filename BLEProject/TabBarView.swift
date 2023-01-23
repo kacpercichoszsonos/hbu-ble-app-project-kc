@@ -10,10 +10,12 @@ import SwiftUI
 struct TabBarView: View {
     var body: some View {
         TabView {
-            DukeControlView()
-                .tabItem {
-                    Label("Duke", systemImage: "headphones")
-                }
+            NavigationView {
+                DukeControlView(viewModel: DukeControlViewModel())
+            }
+            .tabItem {
+                Label("Duke", systemImage: "headphones")
+            }
             NavigationView {
                 BleScannerView(viewModel: BleScannerViewModel())
             }

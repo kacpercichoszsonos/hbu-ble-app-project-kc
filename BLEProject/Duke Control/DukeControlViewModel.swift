@@ -7,22 +7,16 @@
 
 import Foundation
 
-class DukeControlViewModel: ViewModel, ViewModelProtocol {
-    var dukeModel: DukeModel? {
+class DukeControlViewModel: ObservableObject {
+    @Published var dukeModel: DukeModel? {
         didSet {
-            self.update?(.reloadDukeValues)
+            self.isDukeConnected = (dukeModel != nil) ? true : false
         }
     }
+    @Published var isDukeConnected: Bool = false
     var dukeModelObserver: NSObjectProtocol?
 
-    var update: ((DukeControlViewModel.UpdateType) -> Void)?
-    enum UpdateType {
-        case dukeNotConnected
-        case reloadDukeValues
-    }
-
-    override init() {
-        super.init()
+    init() {
         self.dukeModelValueChanged()
     }
 
@@ -56,12 +50,15 @@ class DukeControlViewModel: ViewModel, ViewModelProtocol {
 
     private func dukeModelValueChanged() {
         self.dukeModelObserver = NotificationCenter.default.addObserver(forName: Constants.Notifications.dukeModelValueChanged,
-                                                                              object: nil,
-                                                                              queue: nil,
-                                                                              using: { [weak self] note in
+                                                                        object: nil,
+                                                                        queue: nil,
+                                                                        using: { [weak self] note in
             // If object is of dukeModel is nil don't do anything
-            if note.object != nil {
-                self?.dukeModel = note.object as? DukeModel
+            if let dukeObject = note.object as? DukeModel,
+               dukeObject.deviceName != nil,
+               dukeObject.ancMode != nil,
+               dukeObject.headTrackingMode != nil {
+                self?.dukeModel = dukeObject
             }
         })
     }

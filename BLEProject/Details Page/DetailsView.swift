@@ -9,6 +9,11 @@ import SwiftUI
 
 struct DetailsView: View {
     @ObservedObject var viewModel: DetailsViewModel
+
+    init(device: BleDeviceModel) {
+        _viewModel = ObservedObject(wrappedValue: DetailsViewModel(device: device))
+    }
+    
     var body: some View {
         NavigationView {
             List {
