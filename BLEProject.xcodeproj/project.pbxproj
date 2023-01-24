@@ -19,6 +19,7 @@
 		4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3C29267866007C221C /* DetailsViewModel.swift */; };
 		4BE02A3F29269039007C221C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3E29269039007C221C /* Constants.swift */; };
 		4BEBD222297EB77100743617 /* Symphony in Frameworks */ = {isa = PBXBuildFile; productRef = 4BEBD221297EB77100743617 /* Symphony */; };
+		4BEBD2242980120000743617 /* DukeControlFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEBD2232980120000743617 /* DukeControlFormView.swift */; };
 		4BEEC696292299740007314C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC695292299740007314C /* AppDelegate.swift */; };
 		4BEEC698292299740007314C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC697292299740007314C /* SceneDelegate.swift */; };
 		4BEEC69F292299760007314C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC69E292299760007314C /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		4BE02A3C29267866007C221C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		4BE02A3E29269039007C221C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4BEBD21F297EB70C00743617 /* Symphony */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Symphony; sourceTree = "<group>"; };
+		4BEBD2232980120000743617 /* DukeControlFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlFormView.swift; sourceTree = "<group>"; };
 		4BEEC692292299740007314C /* BLEProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC695292299740007314C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BEEC697292299740007314C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				4BF887F72975CDD900856586 /* DukeControlView.swift */,
 				4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */,
+				4BEBD2232980120000743617 /* DukeControlFormView.swift */,
 			);
 			path = "Duke Control";
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */,
 				4BF887F429758A6700856586 /* DetailsView.swift in Sources */,
 				4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */,
+				4BEBD2242980120000743617 /* DukeControlFormView.swift in Sources */,
 				4BF887F82975CDD900856586 /* DukeControlView.swift in Sources */,
 				4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */,
 				4BE02A252923E35C007C221C /* BleManager.swift in Sources */,

@@ -41,7 +41,7 @@ public struct ProgressBarCircular: View {
 
 struct ProgressBarCircular_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBarCircular(progress: 0.1, lineWidth: 30)
+        ProgressBarCircular(progress: 0.5, lineWidth: 30)
             .accentColor(.purple)
     }
 }

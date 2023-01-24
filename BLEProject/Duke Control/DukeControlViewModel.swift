@@ -53,9 +53,15 @@ class DukeControlViewModel: ObservableObject {
                                                                         object: nil,
                                                                         queue: nil,
                                                                         using: { [weak self] note in
-            // If object is of dukeModel is nil don't do anything
-            if let dukeObject = note.object as? DukeModel,
-               dukeObject.deviceName != nil,
+
+            // If passed Duke object is nil, set isDukeConnected to false and return to change the DukeControlView to "Connect to Duke".
+            // else check if all settings are loaded and set the self.dukeModel.
+            guard let dukeObject = note.object as? DukeModel else {
+                self?.isDukeConnected = false
+                return
+            }
+
+            if dukeObject.deviceName != nil,
                dukeObject.ancMode != nil,
                dukeObject.headTrackingMode != nil {
                 self?.dukeModel = dukeObject

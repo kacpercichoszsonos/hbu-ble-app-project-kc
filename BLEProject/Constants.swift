@@ -50,6 +50,7 @@ struct Constants {
             static let bleScannerViewStartScanningButtonString = "Start scanning"
         }
         struct DukeControlView {
+            static let dukeControlViewHeaderTitleString = "Duke"
             static let dukeControlViewProductNameString = "Product name:"
             static let dukeControlViewProductNameTextfieldPrompt = "Enter device name"
             static let dukeControlViewAncModeString = "ANC Mode:"

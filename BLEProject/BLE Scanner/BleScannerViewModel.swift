@@ -11,7 +11,7 @@ import SwiftUI
 class BleScannerViewModel: ObservableObject {
     private var ble: BleManager?
     private var peripheralsObserver: NSObjectProtocol?
-    var sonosOnlySearch: Bool = false
+    private var sonosOnlySearch: Bool = false
 
     @Published var devices = [BleDeviceModel]()
 

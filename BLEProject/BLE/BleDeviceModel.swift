@@ -12,7 +12,6 @@ struct BleDeviceModel: Identifiable {
     var id: String { name }
     var peripheral: CBPeripheral
     var name: String
-    var data: [AdvertisementDataKeys : Any]?
     var bleData: [BleData]?
 }
 
