@@ -116,6 +116,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         self.connectedDevice = nil
         self.peripheralToConnect = nil
         self.connectionAttempt = true
+        self.dukeModel = nil
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {

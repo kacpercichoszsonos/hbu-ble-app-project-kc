@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Symphony
 
 struct DetailsView: View {
     @ObservedObject var viewModel: DetailsViewModel
@@ -19,13 +20,8 @@ struct DetailsView: View {
             List {
                 ForEach(self.viewModel.device.bleData ?? []) { bleData in
                     VStack(alignment: .leading) {
-                        Text(self.viewModel.setupCell(bleData: bleData).title)
-                            .padding(.leading, 10)
-                            .frame(alignment: .topLeading)
-                        Spacer()
-                        Text(self.viewModel.setupCell(bleData: bleData).description)
-                            .padding(.leading, 20)
-                            .frame(alignment: .topLeading)
+                        ListItem(title: self.viewModel.setupCell(bleData: bleData).title,
+                                 subtitle: self.viewModel.setupCell(bleData: bleData).description)
                     }
                 }
             }
@@ -36,6 +32,7 @@ struct DetailsView: View {
             )
         }
         .navigationTitle(viewModel.device.name)
+        .navigationBarTitleTextColor(.brown)
         .toolbar {
             ToolbarItem {
                 Button(self.viewModel.isConnected == .connected ? Constants.Strings.DetailsView.detailsViewDisconnectButtonString : Constants.Strings.DetailsView.detailsViewConnectButtonString) {

@@ -58,7 +58,6 @@ public struct ColoredToggleStyle: ToggleStyle {
                 .animation(Animation.easeInOut(duration: 0.2), value: configuration.isOn)
                 .onTapGesture { configuration.isOn.toggle() }
         }
-        .font(.title)
         .padding(.horizontal)
     }
 }

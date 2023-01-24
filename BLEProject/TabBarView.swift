@@ -23,5 +23,6 @@ struct TabBarView: View {
                 Label("Bluetooth", systemImage: "antenna.radiowaves.left.and.right")
             }
         }
+        .accentColor(.brown)
     }
 }

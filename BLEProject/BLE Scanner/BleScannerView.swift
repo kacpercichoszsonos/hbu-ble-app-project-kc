@@ -7,9 +7,12 @@
 
 import SwiftUI
 import Symphony
+import DynamicColor
 
 struct BleScannerView: View {
+    static let theme = Theme.example
     @StateObject private var viewModel: BleScannerViewModel
+    @State private var sonosOnlySearch: Bool = false
 
     init(viewModel: BleScannerViewModel) {
         _viewModel = StateObject(wrappedValue: BleScannerViewModel())
@@ -17,28 +20,34 @@ struct BleScannerView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 2) {
-            Toggle(Constants.Strings.BleScannerView.bleScannerViewToggleString,
-                   isOn: $viewModel.sonosOnlySearch)
-                .onChange(of: self.viewModel.sonosOnlySearch) { newValue in
-                    self.viewModel.setSonosOnlySearchBool(_value: newValue)
-                }
-                .padding(20)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
+            Toggle(isOn: $sonosOnlySearch) {
+                Text(Constants.Strings.BleScannerView.bleScannerViewToggleString)
+            }
+            .toggleStyle(
+                ColoredToggleStyle(
+                    onColor: .gray,
+                    offColor: .gray,
+                    thumbColorOn: .brown,
+                    thumbColorOff: Color(DynamicColor(BleScannerView.theme.primary).shaded())
+                ))
+            .onChange(of: sonosOnlySearch) { value in
+                self.viewModel.setSonosOnlySearchBool(_value: value)
+            }
             Button(action: self.viewModel.startScanning) {
                 Text(Constants.Strings.BleScannerView.bleScannerViewStartScanningButtonString)
                     .padding(5)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(PrimaryButton(background: .brown))
             .buttonBorderShape(.roundedRectangle)
             List() {
                 ForEach(self.viewModel.devices) { device in
                     NavigationLink(destination: DetailsView(device: device)) {
-                        Text(device.name)
+                        ListItem(title: device.name)
                     }
                 }
             }
         }
+        .environmentObject(BleScannerView.theme)
     }
 }
 
