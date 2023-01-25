@@ -51,8 +51,8 @@ class DukeControlViewModel: ObservableObject {
             }
 
             BleManager.shared.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
-                                                    SettingsCommandId.SETTINGS_VOLUME_SET_MAX_VOLUME.rawValue,
+                                                    NamespaceId.NAMESPACE_VOLUME.rawValue,
+                                                    VolumeCommandId.VOLUME_SET_VOLUME.rawValue,
                                                     UInt8(Int(volumeFloat))]))
         }
     }

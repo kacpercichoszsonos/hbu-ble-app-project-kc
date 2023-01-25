@@ -259,7 +259,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                 dukeModel.ancMode = value[3].boolValue
             case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
                 dukeModel.headTrackingMode = value[3].boolValue
-            case SettingsCommandId.SETTINGS_VOLUME_GET_MAX_VOLUME.rawValue:
+            case VolumeCommandId.VOLUME_GET_VOLUME.rawValue:
                 dukeModel.volume = Int(value[3])
             default:
                 break
@@ -279,8 +279,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
                                    SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue]))
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
-                                   SettingsCommandId.SETTINGS_VOLUME_GET_MAX_VOLUME.rawValue]))
+                                   NamespaceId.NAMESPACE_VOLUME.rawValue,
+                                   VolumeCommandId.VOLUME_GET_VOLUME.rawValue]))
     }
 
     func writeData(data: Data) {
