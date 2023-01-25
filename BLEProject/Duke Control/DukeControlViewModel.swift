@@ -45,6 +45,15 @@ class DukeControlViewModel: ObservableObject {
                 dataToWrite.append(byte)
             }
             BleManager.shared.writeData(data: dataToWrite)
+        case .volumeLimit:
+            guard let volumeFloat = value as? Float else {
+                return
+            }
+
+            BleManager.shared.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                    SettingsCommandId.SETTINGS_VOLUME_SET_MAX_VOLUME.rawValue,
+                                                    UInt8(Int(volumeFloat))]))
         }
     }
 
@@ -63,10 +72,15 @@ class DukeControlViewModel: ObservableObject {
 
             if dukeObject.deviceName != nil,
                dukeObject.ancMode != nil,
-               dukeObject.headTrackingMode != nil {
+               dukeObject.headTrackingMode != nil,
+               dukeObject.volume != nil {
                 self?.dukeModel = dukeObject
             }
         })
+    }
+
+    func connectDuke() {
+        BleManager.shared.searchForDukeOnly()
     }
 
     func setupView() -> (ancMode: Bool, headTrackingMode: Bool) {
@@ -76,5 +90,29 @@ class DukeControlViewModel: ObservableObject {
             return (ancMode, headTrackingMode)
         }
         return (false, false)
+    }
+
+    func setupVolumeSlider() -> Float {
+        if let volumeLimit = self.dukeModel?.volume {
+            return CFloat(volumeLimit)
+        }
+        return 100.0
+    }
+
+    func getSpeakerIconName() -> String {
+        return self.isDukeConnected ? "hifispeaker.fill" : "hifispeaker"
+    }
+
+    func volumeIcon(sliderValue: Float) -> String {
+        if sliderValue == 0.0 {
+            return "speaker"
+        }
+        if sliderValue < 30 {
+            return "speaker.wave.1"
+        }
+        if sliderValue < 60 {
+            return "speaker.wave.2"
+        }
+        return "speaker.wave.3"
     }
 }

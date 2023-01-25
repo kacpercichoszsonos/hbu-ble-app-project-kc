@@ -11,4 +11,5 @@ class DukeModel: ObservableObject {
     var deviceName: String?
     var ancMode: Bool?
     var headTrackingMode: Bool?
+    var volume: Int?
 }

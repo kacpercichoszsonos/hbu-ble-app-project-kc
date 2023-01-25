@@ -36,8 +36,6 @@ public struct Header: View {
                 
                 Text(title).font(.largeTitle).fontWeight(.bold)
             }
-            
-            Spacer()
         }
     }
 }

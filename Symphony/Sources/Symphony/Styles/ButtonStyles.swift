@@ -28,7 +28,7 @@ public struct PrimaryButton: ButtonStyle {
             .padding(.leading, 16)
             .padding(.trailing, 16)
             .background((self.background != nil) ? self.background : theme.primary)
-            .foregroundColor(Color(DynamicColor(theme.primary).shaded()))
+            .foregroundColor(theme.primary)
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? buttonScalePressed : 1)
             .animation(buttonAnimation, value: configuration.isPressed)

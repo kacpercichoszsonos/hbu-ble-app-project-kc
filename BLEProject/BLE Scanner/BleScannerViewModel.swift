@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class BleScannerViewModel: ObservableObject {
-    private var ble: BleManager?
     private var peripheralsObserver: NSObjectProtocol?
     private var sonosOnlySearch: Bool = false
 
@@ -31,7 +30,7 @@ class BleScannerViewModel: ObservableObject {
     func startScanning() {
         // Setting short 1 second delay with spinner while loading BLE devices
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.ble = BleManager(sonosOnlySearch: self.sonosOnlySearch)
+            BleManager.shared.startScanning(sonosOnly: self.sonosOnlySearch)
         }
     }
 }

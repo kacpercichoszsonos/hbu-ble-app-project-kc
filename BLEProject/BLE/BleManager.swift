@@ -29,6 +29,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
     private var sonosOnlySearch: Bool = false
+    private var dukeOnlySearch: Bool = false
     private var peripheralToConnect: CBPeripheral?
     private var dataToWrite: Data?
     private var inCharacteristic: CBCharacteristic?
@@ -63,9 +64,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         }
     }
 
-    init(sonosOnlySearch: Bool = false) {
+    override init() {
         super.init()
-        self.sonosOnlySearch = sonosOnlySearch
         self.centralManager = CBCentralManager(delegate: self, queue: .main)
     }
 
@@ -94,6 +94,14 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
             self.scannedDevices.append(BleDeviceModel(peripheral: peripheral,
                                                       name: peripheral.name ?? "Unknown device",
                                                       bleData: self.filterAdvertisementData(advertisementData: advertisementData)))
+        }
+        if self.dukeOnlySearch {
+            if peripheral.name == "Pixel 6a" {
+                self.peripheral = peripheral
+                self.peripheral.delegate = self
+                self.peripheralToConnect = peripheral
+                self.centralManager.connect(peripheral)
+            }
         }
     }
 
@@ -128,7 +136,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
             // If the service is Sonos one, discover Sonos characteristics. Otherwise search for general ones.
             if service.uuid == Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID {
                 service.peripheral?.discoverCharacteristics([Constants.ServiceIDs.Sonos.SONOS_GATT_IN_CHAR_UUID, Constants.ServiceIDs.Sonos.SONOS_GATT_OUT_CHAR_UUID],
-                                                             for: service)
+                                                            for: service)
             } else {
                 service.peripheral?.discoverCharacteristics(Constants.ServiceIDs.characteristicsToDiscover,
                                                             for: service)
@@ -216,13 +224,13 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                 characteristic.value?.copyBytes(to: &byte, count: 1)
                 let valueInInt = Int(byte)
                 updatedData.append(BleData(key: AdvertisementDataKeys.characteristicBatteryLevel,
-                                            value: String(valueInInt)))
+                                           value: String(valueInInt)))
             }
             if Constants.ServiceIDs.MODEL_NUMBER_STRING == characteristic.uuid &&
                 !(bleData.contains(where: {$0.key == AdvertisementDataKeys.characteristicModelName})){
                 if let value = characteristic.value {
                     updatedData.append(BleData(key: AdvertisementDataKeys.characteristicModelName,
-                                                value: String(data: value, encoding: .utf8) as Any))
+                                               value: String(data: value, encoding: .utf8) as Any))
                 }
 
             }
@@ -230,7 +238,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                 !(bleData.contains(where: {$0.key == AdvertisementDataKeys.characteristicManufacturerName})){
                 if let value = characteristic.value {
                     updatedData.append(BleData(key: AdvertisementDataKeys.characteristicManufacturerName,
-                                                value: String(data: value, encoding: .utf8) as Any))
+                                               value: String(data: value, encoding: .utf8) as Any))
                 }
             }
             self.connectedDevice = BleDeviceModel(peripheral: connectedDevice.peripheral,
@@ -251,6 +259,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                 dukeModel.ancMode = value[3].boolValue
             case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
                 dukeModel.headTrackingMode = value[3].boolValue
+            case SettingsCommandId.SETTINGS_VOLUME_GET_MAX_VOLUME.rawValue:
+                dukeModel.volume = Int(value[3])
             default:
                 break
             }
@@ -260,14 +270,17 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
 
     func getDukeCurrentSettings() {
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                                NamespaceId.NAMESPACE_SETTINGS.rawValue,
-                                                SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue]))
+                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                   SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue]))
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                                NamespaceId.NAMESPACE_SETTINGS.rawValue,
-                                                SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue]))
+                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                   SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue]))
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                                NamespaceId.NAMESPACE_SETTINGS.rawValue,
-                                                SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue]))
+                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                   SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue]))
+        self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                   SettingsCommandId.SETTINGS_VOLUME_GET_MAX_VOLUME.rawValue]))
     }
 
     func writeData(data: Data) {
@@ -278,5 +291,23 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         if let inCharacteristic {
             self.connectedDevice?.peripheral.writeValue(data, for: inCharacteristic, type: .withoutResponse)
         }
+    }
+
+    func searchForDukeOnly() {
+        self.sonosOnlySearch = true
+        self.dukeOnlySearch = true
+    }
+
+    func startScanning(sonosOnly: Bool) {
+        self.sonosOnlySearch = sonosOnly
+        self.dukeOnlySearch = false
+        if let connectedDevice {
+            // If app is connected to any device before starting scanning,
+            // cancel the connection and clear the list of scannedDevices
+            self.scannedDevices = [BleDeviceModel]()
+            self.centralManager.cancelPeripheralConnection(connectedDevice.peripheral)
+        }
+        self.centralManager.scanForPeripherals(withServices: self.sonosOnlySearch ?
+                                               [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
     }
 }

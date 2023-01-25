@@ -14,7 +14,6 @@ struct DukeControlFormView: View {
     @State private var ancMode: Bool = false
     @State private var headTrackingMode: Bool = false
 
-
     var body: some View {
         Form {
             HStack {

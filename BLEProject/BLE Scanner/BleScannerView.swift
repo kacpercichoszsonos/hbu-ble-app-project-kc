@@ -28,7 +28,7 @@ struct BleScannerView: View {
                     onColor: .gray,
                     offColor: .gray,
                     thumbColorOn: .brown,
-                    thumbColorOff: Color(DynamicColor(BleScannerView.theme.primary).shaded())
+                    thumbColorOff: BleScannerView.theme.primary
                 ))
             .onChange(of: sonosOnlySearch) { value in
                 self.viewModel.setSonosOnlySearchBool(_value: value)
