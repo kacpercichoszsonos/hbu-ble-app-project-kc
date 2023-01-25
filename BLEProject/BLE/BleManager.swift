@@ -296,6 +296,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
     func searchForDukeOnly() {
         self.sonosOnlySearch = true
         self.dukeOnlySearch = true
+        self.centralManager.scanForPeripherals(withServices: self.sonosOnlySearch ?
+                                               [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
     }
 
     func startScanning(sonosOnly: Bool) {
@@ -309,5 +311,12 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         }
         self.centralManager.scanForPeripherals(withServices: self.sonosOnlySearch ?
                                                [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
+    }
+
+    func disconnectDuke() {
+        if let connectedDevice {
+            self.scannedDevices = [BleDeviceModel]()
+            self.centralManager.cancelPeripheralConnection(connectedDevice.peripheral)
+        }
     }
 }

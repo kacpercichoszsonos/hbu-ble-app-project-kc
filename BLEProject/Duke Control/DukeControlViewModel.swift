@@ -83,6 +83,10 @@ class DukeControlViewModel: ObservableObject {
         BleManager.shared.searchForDukeOnly()
     }
 
+    func toggleDukePairing() {
+        self.isDukeConnected ? BleManager.shared.disconnectDuke() : self.connectDuke()
+    }
+
     func setupView() -> (ancMode: Bool, headTrackingMode: Bool) {
         if let dukeModel = self.dukeModel,
            let ancMode = dukeModel.ancMode,
