@@ -24,17 +24,16 @@ public struct ActivityIcon: View {
     }
     
     public var body: some View {
-        
         HStack(spacing: self.gap){
             ForEach((0...self.barCount - 1), id: \.self) { index in
                 Rectangle().fill(.foreground).cornerRadius(100)
-                    .frame(height: moving ? 1 : size)
+                    .frame(height: moving ? size : 1)
                     .animation(.easeInOut(duration: Double.random(in: speed...speed * 2) ).repeatForever(autoreverses: true), value: moving)
             }
         }
-        .frame(width: self.size, height: self.size, alignment: .bottom)
+        .frame(maxWidth: .infinity, maxHeight: self.size, alignment: .bottom)
         .onAppear{
-            moving.toggle()
+            moving = true
         }
         .onDisappear{
             moving = false

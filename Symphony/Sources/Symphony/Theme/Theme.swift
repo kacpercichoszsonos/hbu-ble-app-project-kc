@@ -30,7 +30,7 @@ public class Theme: ObservableObject, Identifiable{
 //    ])
     
     
-    public static let example = Theme(background: .black)
+    public static let example = Theme(background: .gray)
     
     
     public init (name: String? = nil, background: Color, primary: Color? = nil, accent: Color? = nil)
