@@ -48,14 +48,15 @@ struct Constants {
         struct BleScannerView {
             static let bleScannerViewToggleString = "Search for Sonos only devices"
             static let bleScannerViewStartScanningButtonString = "Start scanning"
+            static let bleScannerViewStopScanningButtonString = "Stop scanning"
         }
-        struct DukeControlView {
-            static let dukeControlViewHeaderTitleString = "Duke"
-            static let dukeControlViewProductNameString = "Product name:"
-            static let dukeControlViewProductNameTextfieldPrompt = "Enter device name"
-            static let dukeControlViewAncModeString = "ANC Mode:"
-            static let dukeControlViewHeadTrackingModeString = "Head tracking mode:"
-            static let dukeControlViewConnectToDukeString = "Connect to Duke"
+        struct SettingsView {
+            static let settingsViewHeaderTitleString = "Duke"
+            static let settingsViewProductNameString = "Product name:"
+            static let settingsViewProductNameTextfieldPrompt = "Enter device name"
+            static let settingsViewAncModeString = "ANC Mode:"
+            static let settingsViewHeadTrackingModeString = "Head tracking mode:"
+            static let settingsViewConnectToDukeString = "Connect to Duke"
         }
         struct DetailsView {
             static let detailsViewDisconnectButtonString = "Disconnect"

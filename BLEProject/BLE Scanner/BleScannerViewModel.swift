@@ -11,7 +11,7 @@ import SwiftUI
 class BleScannerViewModel: ObservableObject {
     private var peripheralsObserver: NSObjectProtocol?
     private var sonosOnlySearch: Bool = false
-
+    @Published var isScanning: Bool = false
     @Published var devices = [BleDeviceModel]()
 
     init() {
@@ -19,18 +19,28 @@ class BleScannerViewModel: ObservableObject {
                                                                           object: nil,
                                                                           queue: nil,
                                                                           using: { [weak self] note in
-            self?.devices = note.object as! [BleDeviceModel]
+            guard let devices = note.object as? [BleDeviceModel] else {
+                return
+            }
+
+            self?.devices = devices
         })
     }
 
     func setSonosOnlySearchBool(_value: Bool) {
+        // Reset scanning when SonosOnly switch is changed while already scanning
+        if !self.devices.isEmpty {
+            self.isScanning = false
+            BleManager.shared.stopScanning()
+        }
         self.sonosOnlySearch = _value
     }
 
-    func startScanning() {
+    func scanningToggle() {
         // Setting short 1 second delay with spinner while loading BLE devices
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            BleManager.shared.startScanning(sonosOnly: self.sonosOnlySearch)
+            self.isScanning ? BleManager.shared.stopScanning() : BleManager.shared.startScanning(sonosOnly: self.sonosOnlySearch)
+            self.isScanning.toggle()
         }
     }
 }

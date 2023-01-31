@@ -33,15 +33,17 @@ struct BleScannerView: View {
             .onChange(of: sonosOnlySearch) { value in
                 self.viewModel.setSonosOnlySearchBool(_value: value)
             }
-            Button(action: self.viewModel.startScanning) {
-                Text(Constants.Strings.BleScannerView.bleScannerViewStartScanningButtonString)
+            Button(action: self.viewModel.scanningToggle) {
+                Text(self.viewModel.isScanning ? Constants.Strings.BleScannerView.bleScannerViewStopScanningButtonString : Constants.Strings.BleScannerView.bleScannerViewStartScanningButtonString)
                     .padding(5)
             }
             .buttonStyle(PrimaryButton(background: .brown))
             .buttonBorderShape(.roundedRectangle)
             List() {
                 ForEach(self.viewModel.devices) { device in
-                    NavigationLink(destination: DetailsView(device: device)) {
+                    NavigationLink {
+                        DetailsView(device: device)
+                    } label: {
                         ListItem(title: device.name)
                     }
                 }

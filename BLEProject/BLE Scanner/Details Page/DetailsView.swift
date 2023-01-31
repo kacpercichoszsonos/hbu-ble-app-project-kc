@@ -33,6 +33,9 @@ struct DetailsView: View {
         }
         .navigationTitle(viewModel.device.name)
         .navigationBarTitleTextColor(.brown)
+        .onAppear {
+            
+        }
         .toolbar {
             ToolbarItem {
                 Button(self.viewModel.isConnected == .connected ? Constants.Strings.DetailsView.detailsViewDisconnectButtonString : Constants.Strings.DetailsView.detailsViewConnectButtonString) {

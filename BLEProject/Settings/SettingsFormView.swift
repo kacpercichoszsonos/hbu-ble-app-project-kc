@@ -1,15 +1,16 @@
 //
-//  DukeControlFormView.swift
+//  SettingsFormView.swift
 //  BLEProject
 //
-//  Created by Kacper Cichosz on 24/01/2023.
+//  Created by Kacper Cichosz on 25/01/2023.
 //
 
 import SwiftUI
 import Symphony
+import SonosSymphony
 
-struct DukeControlFormView: View {
-    @StateObject var viewModel: DukeControlViewModel
+struct SettingsFormView: View {
+    @StateObject var viewModel: SettingsViewModel
     @State private var deviceName: String = ""
     @State private var ancMode: Bool = false
     @State private var headTrackingMode: Bool = false
@@ -17,10 +18,10 @@ struct DukeControlFormView: View {
     var body: some View {
         Form {
             HStack {
-                Text(Constants.Strings.DukeControlView.dukeControlViewProductNameString)
+                Text(Constants.Strings.SettingsView.settingsViewProductNameString)
                     .padding(.horizontal)
                 TextField(text: $deviceName ,
-                          prompt: Text(self.viewModel.dukeModel?.deviceName ?? Constants.Strings.DukeControlView.dukeControlViewProductNameTextfieldPrompt)) {
+                          prompt: Text(self.viewModel.dukeModel?.deviceName ?? Constants.Strings.SettingsView.settingsViewProductNameTextfieldPrompt)) {
                     Text("Device name")
                 }
                           .onSubmit {
@@ -29,7 +30,7 @@ struct DukeControlFormView: View {
             }
             HStack {
                 Toggle(isOn: $ancMode) {
-                    Text(Constants.Strings.DukeControlView.dukeControlViewAncModeString)
+                    Text(Constants.Strings.SettingsView.settingsViewAncModeString)
                 }
                 .toggleStyle(
                     ColoredToggleStyle(
@@ -44,7 +45,7 @@ struct DukeControlFormView: View {
             }
             HStack {
                 Toggle(isOn: $headTrackingMode) {
-                    Text(Constants.Strings.DukeControlView.dukeControlViewHeadTrackingModeString)
+                    Text(Constants.Strings.SettingsView.settingsViewHeadTrackingModeString)
                 }
                 .toggleStyle(
                     ColoredToggleStyle(
@@ -63,8 +64,8 @@ struct DukeControlFormView: View {
     }
 }
 
-struct DukeControlFormView_Previews: PreviewProvider {
+struct SettingsFormView_Previews: PreviewProvider {
     static var previews: some View {
-        DukeControlFormView(viewModel: DukeControlViewModel())
+        SettingsFormView(viewModel: SettingsViewModel())
     }
 }
