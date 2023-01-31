@@ -10,9 +10,14 @@
 		4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E5F1C29707B210093D20D /* BleScannerView.swift */; };
 		4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */; };
 		4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EF29375EFB00D07F49 /* ViewModel.swift */; };
-		4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */; };
 		4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */; };
 		4BCC3FD32980889C004389F0 /* SonosSymphony in Frameworks */ = {isa = PBXBuildFile; productRef = 4BCC3FD22980889C004389F0 /* SonosSymphony */; };
+		4BCC3FE629815402004389F0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FE529815402004389F0 /* SettingsView.swift */; };
+		4BCC3FE829815EF7004389F0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FE729815EF7004389F0 /* SettingsViewModel.swift */; };
+		4BCC3FEA29815FDE004389F0 /* SettingsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FE929815FDE004389F0 /* SettingsFormView.swift */; };
+		4BCC3FED29817CE7004389F0 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FEC29817CE7004389F0 /* PlayerView.swift */; };
+		4BCC3FEF29817CF5004389F0 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FEE29817CF5004389F0 /* PlayerViewModel.swift */; };
+		4BCC3FF229819CDA004389F0 /* PlayPauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FF129819CDA004389F0 /* PlayPauseView.swift */; };
 		4BE02A252923E35C007C221C /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A242923E35C007C221C /* BleManager.swift */; };
 		4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */; };
 		4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */; };
@@ -20,7 +25,6 @@
 		4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3C29267866007C221C /* DetailsViewModel.swift */; };
 		4BE02A3F29269039007C221C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A3E29269039007C221C /* Constants.swift */; };
 		4BEBD222297EB77100743617 /* Symphony in Frameworks */ = {isa = PBXBuildFile; productRef = 4BEBD221297EB77100743617 /* Symphony */; };
-		4BEBD2242980120000743617 /* DukeControlFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEBD2232980120000743617 /* DukeControlFormView.swift */; };
 		4BEEC696292299740007314C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC695292299740007314C /* AppDelegate.swift */; };
 		4BEEC698292299740007314C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC697292299740007314C /* SceneDelegate.swift */; };
 		4BEEC69F292299760007314C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BEEC69E292299760007314C /* Assets.xcassets */; };
@@ -31,7 +35,6 @@
 		4BEEC6CA29229F400007314C /* BleScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEC6C929229F400007314C /* BleScannerViewModel.swift */; };
 		4BF887F429758A6700856586 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF887F329758A6700856586 /* DetailsView.swift */; };
 		4BF887F62975CD1A00856586 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF887F52975CD1A00856586 /* TabBarView.swift */; };
-		4BF887F82975CDD900856586 /* DukeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF887F72975CDD900856586 /* DukeControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +59,13 @@
 		4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDeviceModel.swift; sourceTree = "<group>"; };
 		4B8B73EF29375EFB00D07F49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4B9A66A1298088430012FA09 /* SonosSymphony */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SonosSymphony; path = "../pdsw-app-passport-ios/SonosSymphony"; sourceTree = "<group>"; };
-		4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlViewModel.swift; sourceTree = "<group>"; };
 		4BB4BE6A2948E9F4002F2CEE /* DukeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeModel.swift; sourceTree = "<group>"; };
+		4BCC3FE529815402004389F0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4BCC3FE729815EF7004389F0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		4BCC3FE929815FDE004389F0 /* SettingsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFormView.swift; sourceTree = "<group>"; };
+		4BCC3FEC29817CE7004389F0 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		4BCC3FEE29817CF5004389F0 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		4BCC3FF129819CDA004389F0 /* PlayPauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseView.swift; sourceTree = "<group>"; };
 		4BE02A242923E35C007C221C /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		4BE02A2F2923F1FC007C221C /* ModelledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelledViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +73,6 @@
 		4BE02A3C29267866007C221C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		4BE02A3E29269039007C221C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4BEBD21F297EB70C00743617 /* Symphony */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Symphony; sourceTree = "<group>"; };
-		4BEBD2232980120000743617 /* DukeControlFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlFormView.swift; sourceTree = "<group>"; };
 		4BEEC692292299740007314C /* BLEProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEEC695292299740007314C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BEEC697292299740007314C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +87,6 @@
 		4BEEC6C929229F400007314C /* BleScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerViewModel.swift; sourceTree = "<group>"; };
 		4BF887F329758A6700856586 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		4BF887F52975CD1A00856586 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		4BF887F72975CDD900856586 /* DukeControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 		4B8B73ED292E7CCF00D07F49 /* BLE Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				4BE02A3529266F92007C221C /* Details Page */,
 				4B3E5F1C29707B210093D20D /* BleScannerView.swift */,
 				4BEEC6C929229F400007314C /* BleScannerViewModel.swift */,
 			);
@@ -129,14 +136,31 @@
 			path = BLE;
 			sourceTree = "<group>";
 		};
-		4B97856B29425D8C00C3A270 /* Duke Control */ = {
+		4BCC3FE4298153A5004389F0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				4BF887F72975CDD900856586 /* DukeControlView.swift */,
-				4BB4BE662948ADB8002F2CEE /* DukeControlViewModel.swift */,
-				4BEBD2232980120000743617 /* DukeControlFormView.swift */,
+				4BCC3FE529815402004389F0 /* SettingsView.swift */,
+				4BCC3FE729815EF7004389F0 /* SettingsViewModel.swift */,
+				4BCC3FE929815FDE004389F0 /* SettingsFormView.swift */,
 			);
-			path = "Duke Control";
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		4BCC3FEB29817CB8004389F0 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				4BCC3FEC29817CE7004389F0 /* PlayerView.swift */,
+				4BCC3FEE29817CF5004389F0 /* PlayerViewModel.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		4BCC3FF029819CC6004389F0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4BCC3FF129819CDA004389F0 /* PlayPauseView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		4BE02A2A2923F127007C221C /* MVVM */ = {
@@ -191,11 +215,12 @@
 		4BEEC694292299740007314C /* BLEProject */ = {
 			isa = PBXGroup;
 			children = (
+				4BCC3FF029819CC6004389F0 /* Components */,
 				4BE02A2A2923F127007C221C /* MVVM */,
 				4B8B73EE292E7CE600D07F49 /* BLE */,
-				4B97856B29425D8C00C3A270 /* Duke Control */,
+				4BCC3FEB29817CB8004389F0 /* Player */,
 				4B8B73ED292E7CCF00D07F49 /* BLE Scanner */,
-				4BE02A3529266F92007C221C /* Details Page */,
+				4BCC3FE4298153A5004389F0 /* Settings */,
 				4BEEC695292299740007314C /* AppDelegate.swift */,
 				4BEEC697292299740007314C /* SceneDelegate.swift */,
 				4BEEC69E292299760007314C /* Assets.xcassets */,
@@ -360,23 +385,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */,
+				4BCC3FEF29817CF5004389F0 /* PlayerViewModel.swift in Sources */,
 				4BF887F429758A6700856586 /* DetailsView.swift in Sources */,
-				4BB4BE672948ADB8002F2CEE /* DukeControlViewModel.swift in Sources */,
-				4BEBD2242980120000743617 /* DukeControlFormView.swift in Sources */,
-				4BF887F82975CDD900856586 /* DukeControlView.swift in Sources */,
+				4BCC3FF229819CDA004389F0 /* PlayPauseView.swift in Sources */,
 				4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */,
 				4BE02A252923E35C007C221C /* BleManager.swift in Sources */,
 				4BE02A302923F1FC007C221C /* ModelledViewController.swift in Sources */,
 				4BEEC696292299740007314C /* AppDelegate.swift in Sources */,
 				4BE02A3F29269039007C221C /* Constants.swift in Sources */,
 				4BB4BE6B2948E9F4002F2CEE /* DukeModel.swift in Sources */,
+				4BCC3FEA29815FDE004389F0 /* SettingsFormView.swift in Sources */,
 				4BEEC698292299740007314C /* SceneDelegate.swift in Sources */,
 				4BEEC6CA29229F400007314C /* BleScannerViewModel.swift in Sources */,
 				4BE02A3B29267249007C221C /* Extensions.swift in Sources */,
 				4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */,
+				4BCC3FE829815EF7004389F0 /* SettingsViewModel.swift in Sources */,
 				4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */,
 				4BF887F62975CD1A00856586 /* TabBarView.swift in Sources */,
 				4BE02A3D29267866007C221C /* DetailsViewModel.swift in Sources */,
+				4BCC3FED29817CE7004389F0 /* PlayerView.swift in Sources */,
+				4BCC3FE629815402004389F0 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

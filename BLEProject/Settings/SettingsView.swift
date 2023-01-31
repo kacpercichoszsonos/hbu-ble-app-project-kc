@@ -1,23 +1,23 @@
 //
-//  DukeControlView.swift
+//  SettingsView.swift
 //  BLEProject
 //
-//  Created by Kacper Cichosz on 16/01/2023.
+//  Created by Kacper Cichosz on 25/01/2023.
 //
 
 import SwiftUI
 import Symphony
 import SonosSymphony
 
-enum CurrentlyUsedSettings {
+enum SettingsTypes {
     case anc
     case headTracking
     case deviceName
-    case volumeLimit
+    case volume
 }
 
-struct DukeControlView: View {
-    @StateObject var viewModel: DukeControlViewModel
+struct SettingsView: View {
+    @StateObject var viewModel: SettingsViewModel
     @Binding var tabSelection: Tab
     static let theme = Theme.example
     @State private var volumeLimitSlider: Float = 100.0
@@ -26,7 +26,7 @@ struct DukeControlView: View {
     var body: some View {
         VStack(alignment: .center, content: {
             HStack(spacing: 10) {
-                Header(title: Constants.Strings.DukeControlView.dukeControlViewHeaderTitleString)
+                Header(title: Constants.Strings.SettingsView.settingsViewHeaderTitleString)
                     .foregroundColor(.brown)
                 Icon(name: self.viewModel.getSpeakerIconName())
                     .onTapGesture {
@@ -36,16 +36,15 @@ struct DukeControlView: View {
             .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .leading)
             if self.viewModel.isDukeConnected {
-                DukeControlFormView(viewModel: self.viewModel)
-                ActivityIcon(barCount: 30, gap: 2, size: CGFloat(volumeLimitSlider), speed: 0.4)
+                SettingsFormView(viewModel: self.viewModel)
+                ActivityIcon(barCount: 30, gap: 2, size: $volumeLimitSlider, speed: 0.4)
                     .padding(.horizontal)
                     .foregroundColor(.brown)
-                    .frame(minHeight: CGFloat(volumeLimitSlider))
                 HStack(spacing: 10) {
                     Icon(name: self.viewModel.volumeIcon(sliderValue: volumeLimitSlider))
                     SymphonyRangeSlider(value: $volumeLimitSlider, isMuted: $isMuted)
                         .onChange(of: volumeLimitSlider) { newValue in
-                            self.viewModel.writeData(setting: .volumeLimit, value: newValue)
+                            self.viewModel.writeData(setting: .volume, value: newValue)
                         }
                     Text("\(Int(volumeLimitSlider))")
                 }
@@ -53,7 +52,7 @@ struct DukeControlView: View {
             } else {
                 Spacer()
                 Button(action: {self.viewModel.connectDuke()}) {
-                    Text(Constants.Strings.DukeControlView.dukeControlViewConnectToDukeString)
+                    Text(Constants.Strings.SettingsView.settingsViewConnectToDukeString)
                         .padding(5)
                 }
                 .buttonStyle(SecondaryButton(background: .brown))
@@ -61,16 +60,20 @@ struct DukeControlView: View {
                 Spacer()
             }
         })
+        .onReceive(self.viewModel.$dukeModel, perform: { dukeModel in
+            self.volumeLimitSlider = self.viewModel.setupVolumeSlider()
+        })
         .onChange(of: self.viewModel.isDukeConnected, perform: { _ in
             self.volumeLimitSlider = self.viewModel.setupVolumeSlider()
         })
+        .padding(.horizontal)
         .frame(maxHeight: .infinity, alignment: .top)
-        .environmentObject(DukeControlView.theme)
+        .environmentObject(SettingsView.theme)
     }
 }
 
-struct DukeControlView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        DukeControlView(viewModel: DukeControlViewModel(), tabSelection: .constant(Tab.duke))
+        SettingsView( viewModel: SettingsViewModel(), tabSelection: .constant(.duke))
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 enum Tab {
     case duke
     case bluetooth
+    case settings
 }
 
 struct TabBarView: View {
@@ -18,10 +19,10 @@ struct TabBarView: View {
     var body: some View {
         TabView(selection: $tabSelection) {
             NavigationView {
-                DukeControlView(viewModel: DukeControlViewModel(), tabSelection: $tabSelection)
+                PlayerView(viewModel: PlayerViewModel(), tabSelection: $tabSelection)
             }
             .tabItem {
-                Label("Duke", systemImage: "headphones")
+                Label("Player", systemImage: "music.note")
             }
             .tag(Tab.duke)
             NavigationView {
@@ -31,6 +32,13 @@ struct TabBarView: View {
                 Label("Bluetooth", systemImage: "antenna.radiowaves.left.and.right")
             }
             .tag(Tab.bluetooth)
+            NavigationView {
+                SettingsView(viewModel: SettingsViewModel(), tabSelection: $tabSelection)
+            }
+            .tabItem {
+                Label("Settings", systemImage: "slider.horizontal.3")
+            }
+            .tag(Tab.settings)
         }
         .accentColor(.brown)
     }

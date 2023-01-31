@@ -1,16 +1,19 @@
 //
-//  DukeControlViewModel.swift
+//  SettingsViewModel.swift
 //  BLEProject
 //
-//  Created by Kacper Cichosz on 13/12/2022.
+//  Created by Kacper Cichosz on 25/01/2023.
 //
 
 import Foundation
 
-class DukeControlViewModel: ObservableObject {
+class SettingsViewModel: ObservableObject {
     @Published var dukeModel: DukeModel? {
         didSet {
             self.isDukeConnected = (dukeModel != nil) ? true : false
+            if self.isDukeConnected {
+                BleManager.shared.stopScanning()
+            }
         }
     }
     @Published var isDukeConnected: Bool = false
@@ -20,7 +23,7 @@ class DukeControlViewModel: ObservableObject {
         self.dukeModelValueChanged()
     }
 
-    func writeData(setting: CurrentlyUsedSettings, value: Any?) {
+    func writeData(setting: SettingsTypes, value: Any?) {
         switch setting {
         case .anc:
             BleManager.shared.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
@@ -45,7 +48,7 @@ class DukeControlViewModel: ObservableObject {
                 dataToWrite.append(byte)
             }
             BleManager.shared.writeData(data: dataToWrite)
-        case .volumeLimit:
+        case .volume:
             guard let volumeFloat = value as? Float else {
                 return
             }

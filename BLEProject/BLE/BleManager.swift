@@ -251,20 +251,35 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         if let value = characteristic.value {
             // Byte in position "2" holds the information what Setting was called.
             // TODO: Need to expand this for more scenarios when adding more info to local Duke Controller.
-            let dukeModel = self.dukeModel ?? DukeModel()
-            switch value[2] {
-            case SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue:
-                dukeModel.deviceName = String(data: value[4...], encoding: .utf8)
-            case SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue:
-                dukeModel.ancMode = value[3].boolValue
-            case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
-                dukeModel.headTrackingMode = value[3].boolValue
-            case VolumeCommandId.VOLUME_GET_VOLUME.rawValue:
-                dukeModel.volume = Int(value[3])
+            switch value[1] {
+            case NamespaceId.NAMESPACE_SETTINGS.rawValue:
+                let dukeModel = self.dukeModel ?? DukeModel()
+                switch value[2] {
+                case SettingsCommandId.SETTINGS_GET_DEVICE_NAME.rawValue:
+                    dukeModel.deviceName = String(data: value[4...], encoding: .utf8)
+                case SettingsCommandId.SETTINGS_GET_ANC_MODE.rawValue:
+                    dukeModel.ancMode = value[3].boolValue
+                case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
+                    dukeModel.headTrackingMode = value[3].boolValue
+                default:
+                    return
+                }
+                self.dukeModel = dukeModel
+            case NamespaceId.NAMESPACE_VOLUME.rawValue:
+                let dukeModel = self.dukeModel ?? DukeModel()
+                switch value[2] {
+                case VolumeCommandId.VOLUME_GET_VOLUME.rawValue:
+                    dukeModel.volume = Int(value[3])
+                default:
+                    return
+
+                }
+                self.dukeModel = dukeModel
+            case NamespaceId.NAMESPACE_PLAYBACK.rawValue:
+                return
             default:
-                break
+                return
             }
-            self.dukeModel = dukeModel
         }
     }
 
@@ -281,6 +296,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
                                    NamespaceId.NAMESPACE_VOLUME.rawValue,
                                    VolumeCommandId.VOLUME_GET_VOLUME.rawValue]))
+        BleManager.shared.checkDuke()
     }
 
     func writeData(data: Data) {
@@ -313,10 +329,20 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                                                [Constants.ServiceIDs.Sonos.SONOS_GATT_SERVICE_UUID] : nil)
     }
 
+    func stopScanning() {
+        self.centralManager.stopScan()
+        self.scannedDevices = [BleDeviceModel]()
+    }
+
     func disconnectDuke() {
         if let connectedDevice {
             self.scannedDevices = [BleDeviceModel]()
             self.centralManager.cancelPeripheralConnection(connectedDevice.peripheral)
         }
+    }
+
+    func checkDuke() {
+        let duke = self.dukeModel
+        self.dukeModel = duke
     }
 }
