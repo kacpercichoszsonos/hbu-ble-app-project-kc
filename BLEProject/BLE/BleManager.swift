@@ -272,7 +272,6 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                     dukeModel.volume = Int(value[3])
                 default:
                     return
-
                 }
                 self.dukeModel = dukeModel
             case NamespaceId.NAMESPACE_PLAYBACK.rawValue:
@@ -296,7 +295,7 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
                                    NamespaceId.NAMESPACE_VOLUME.rawValue,
                                    VolumeCommandId.VOLUME_GET_VOLUME.rawValue]))
-        BleManager.shared.checkDuke()
+        self.checkDuke()
     }
 
     func writeData(data: Data) {

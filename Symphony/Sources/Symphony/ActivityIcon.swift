@@ -28,7 +28,7 @@ public struct ActivityIcon: View {
             ForEach((0...self.barCount - 1), id: \.self) { index in
                 Rectangle().fill(.foreground).cornerRadius(100)
                     .frame(height: moving ? CGFloat(size) : 1)
-                    .animation(.easeInOut(duration: Double.random(in: speed...speed * 2) ).repeatForever(autoreverses: true), value: moving)
+                    .animation(.easeInOut(duration: Double.random(in: speed...speed * 2) ).repeatForever(autoreverses: true), value: moving) 
             }
         }
         .frame(maxWidth: .infinity, minHeight: 1, maxHeight: CGFloat(size), alignment: .bottom)
