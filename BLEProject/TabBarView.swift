@@ -11,10 +11,11 @@ enum Tab {
     case duke
     case bluetooth
     case settings
+    case passportSettings
 }
 
 struct TabBarView: View {
-    @State private var tabSelection: Tab = .duke
+    @State private var tabSelection: Tab = .passportSettings
 
     var body: some View {
         TabView(selection: $tabSelection) {
@@ -39,6 +40,13 @@ struct TabBarView: View {
                 Label("Settings", systemImage: "slider.horizontal.3")
             }
             .tag(Tab.settings)
+            NavigationView {
+                DukeSettingsView()
+            }
+            .tabItem {
+                Label("Passport", systemImage: "character.book.closed")
+            }
+            .tag(Tab.passportSettings)
         }
         .accentColor(.brown)
     }
