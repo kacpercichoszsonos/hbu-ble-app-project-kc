@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2A6FE6299D371300FF0899 /* settings(1).json in Resources */ = {isa = PBXBuildFile; fileRef = 1F2A6FE5299D371300FF0899 /* settings(1).json */; };
+		1F2A6FE8299D40F700FF0899 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A6FE7299D40F700FF0899 /* SheetView.swift */; };
 		4B3E5F1D29707B210093D20D /* BleScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3E5F1C29707B210093D20D /* BleScannerView.swift */; };
 		4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */; };
 		4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B73EF29375EFB00D07F49 /* ViewModel.swift */; };
@@ -18,8 +20,6 @@
 		4BCC3FED29817CE7004389F0 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FEC29817CE7004389F0 /* PlayerView.swift */; };
 		4BCC3FEF29817CF5004389F0 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FEE29817CF5004389F0 /* PlayerViewModel.swift */; };
 		4BCC3FF229819CDA004389F0 /* PlayPauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC3FF129819CDA004389F0 /* PlayPauseView.swift */; };
-		4BD222A02994564F00AE4ED4 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2229F2994564F00AE4ED4 /* settings.json */; };
-		4BD222A229945FC200AE4ED4 /* settings(1).json in Resources */ = {isa = PBXBuildFile; fileRef = 4BD222A129945FC100AE4ED4 /* settings(1).json */; };
 		4BD222A42994666000AE4ED4 /* SettingsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD222A32994666000AE4ED4 /* SettingsSectionView.swift */; };
 		4BE02A252923E35C007C221C /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A242923E35C007C221C /* BleManager.swift */; };
 		4BE02A2C2923F136007C221C /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE02A2B2923F136007C221C /* ViewModelProtocol.swift */; };
@@ -62,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F2A6FE5299D371300FF0899 /* settings(1).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "settings(1).json"; sourceTree = "<group>"; };
+		1F2A6FE7299D40F700FF0899 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		4B3E5F1C29707B210093D20D /* BleScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleScannerView.swift; sourceTree = "<group>"; };
 		4B8B73EB292E3D7D00D07F49 /* BleDeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDeviceModel.swift; sourceTree = "<group>"; };
 		4B8B73EF29375EFB00D07F49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -73,8 +75,6 @@
 		4BCC3FEC29817CE7004389F0 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		4BCC3FEE29817CF5004389F0 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		4BCC3FF129819CDA004389F0 /* PlayPauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseView.swift; sourceTree = "<group>"; };
-		4BD2229F2994564F00AE4ED4 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = settings.json; path = ../../../Downloads/settings.json; sourceTree = "<group>"; };
-		4BD222A129945FC100AE4ED4 /* settings(1).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "settings(1).json"; path = "../../../Downloads/settings(1).json"; sourceTree = "<group>"; };
 		4BD222A32994666000AE4ED4 /* SettingsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSectionView.swift; sourceTree = "<group>"; };
 		4BD222A929947FD600AE4ED4 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = SonosSymphony/Package.swift; sourceTree = "<group>"; };
 		4BE02A242923E35C007C221C /* BleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
@@ -144,6 +144,7 @@
 			children = (
 				4BEA3EA029928828005E413A /* DukeSettingsView.swift */,
 				4BEA3EA62993CA1F005E413A /* HeadphonesImageView.swift */,
+				1F2A6FE7299D40F700FF0899 /* SheetView.swift */,
 				4BD222A32994666000AE4ED4 /* SettingsSectionView.swift */,
 				4B23DA4D2994829200B955EE /* Model */,
 			);
@@ -266,8 +267,7 @@
 				4BE02A3A29267249007C221C /* Extensions.swift */,
 				4BE02A3E29269039007C221C /* Constants.swift */,
 				4BF887F52975CD1A00856586 /* TabBarView.swift */,
-				4BD222A129945FC100AE4ED4 /* settings(1).json */,
-				4BD2229F2994564F00AE4ED4 /* settings.json */,
+				1F2A6FE5299D371300FF0899 /* settings(1).json */,
 			);
 			path = BLEProject;
 			sourceTree = "<group>";
@@ -399,9 +399,8 @@
 			files = (
 				4BEA3EA4299327DD005E413A /* Images.xcassets in Resources */,
 				4BEEC6A2292299760007314C /* LaunchScreen.storyboard in Resources */,
-				4BD222A02994564F00AE4ED4 /* settings.json in Resources */,
-				4BD222A229945FC200AE4ED4 /* settings(1).json in Resources */,
 				4BEEC69F292299760007314C /* Assets.xcassets in Resources */,
+				1F2A6FE6299D371300FF0899 /* settings(1).json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +443,7 @@
 				4BEEC698292299740007314C /* SceneDelegate.swift in Sources */,
 				4BEEC6CA29229F400007314C /* BleScannerViewModel.swift in Sources */,
 				4BE02A3B29267249007C221C /* Extensions.swift in Sources */,
+				1F2A6FE8299D40F700FF0899 /* SheetView.swift in Sources */,
 				4B8B73F029375EFB00D07F49 /* ViewModel.swift in Sources */,
 				4BCC3FE829815EF7004389F0 /* SettingsViewModel.swift in Sources */,
 				4B8B73EC292E3D7D00D07F49 /* BleDeviceModel.swift in Sources */,

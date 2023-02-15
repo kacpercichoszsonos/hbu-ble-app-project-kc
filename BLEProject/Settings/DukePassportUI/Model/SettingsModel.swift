@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Settings
+// MARK: - Welcome
 struct Settings: Codable {
     let sections: [Section]
 }
@@ -21,7 +21,13 @@ struct Section: Codable {
 // MARK: - Subsection
 struct Subsection: Codable {
     let title, actionIcon: String
+    let sheetSection: [SheetSection]?
     let subtitle: String?
     let yellowRow: Bool?
     let actionText, leadingIcon: String?
+}
+
+// MARK: - SheetSection
+struct SheetSection: Codable {
+    let listViewTitle: String
 }

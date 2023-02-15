@@ -13,11 +13,12 @@ private let maxCellHeight: CGFloat = 60
 
 struct DukeSettingsView: View {
     @StateObject var viewModel: SettingsViewModel
+    @State var isPresented: Bool = false
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 5) {
                 SymphonyPageHeader(title: self.viewModel.dukeModel?.deviceName ?? "Kacper's Duke", eyebrowText: "Duke", icon: Image("Plus")) {
-                    //TODO:
+                  isPresented.toggle()
                 }
                 .foregroundColor(Color.primary)
                 .frame(maxWidth: .infinity)
@@ -30,6 +31,9 @@ struct DukeSettingsView: View {
                 }
             }
             .padding(.horizontal)
+            .sheet(isPresented: $isPresented) {
+              SheetView(headerTitle: "Add to Duke")
+            }.padding()
         }
         .background(Color.sonosBackgroundSecondary.ignoresSafeArea())
     }

@@ -22,6 +22,9 @@ struct SettingsSectionView: View {
     @State var isHeadTrackingOn: Bool = false
     @State var isSonosSpatialOn: Bool = false
     @State var anyOtherSwitch: Bool = false
+    @State var isNoiseCancellationSheetOn: Bool = false
+  @State var isNoiseCancellationSheetOff: Bool = false
+
     var body: some View {
         SymphonySectionHeader(title: section.header)
         VStack {
@@ -64,14 +67,20 @@ struct SettingsSectionView: View {
                     default:
                         Image("home")
                     }
-                })
-                .frame(height: 60)
-                .foregroundColor(subsection.yellowRow ?? false ? Color.sonosEastCoastAccent : Color.sonosPrimary)
-                .listRowBackground(Color.sonosBackgroundTertiary)
-                Divider()
-                    .padding(.leading)
+                }).onTapGesture {
+                  if subsection.title == "Noise Cancellation" {
+                    withAnimation {
+                      isNoiseCancellationSheetOn = !isNoiseCancellationSheetOff
+                    }
+                  }
+                }
             }
         }
+        .sheet(isPresented: $isNoiseCancellationSheetOn, content: {
+          if let sheetSection = section.subsections.first(where: {$0.title == "Noise Cancellation"})?.sheetSection {
+            SheetView(headerTitle: "Noise Cancellation", sheetSection: sheetSection)
+          }
+        })
         .frame(maxWidth: .infinity)
         .background(Color.sonosBackgroundTertiary)
         .cornerRadius(10)

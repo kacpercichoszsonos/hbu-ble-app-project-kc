@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SonosSymphony
 
 public struct ListItem<LeadContent: View, TrailContent: View>: View {
     
@@ -92,6 +93,11 @@ public struct ListItem<LeadContent: View, TrailContent: View>: View {
             trailContent()
         }
         .padding(.horizontal)
+        .frame(height: 60)
+        .foregroundColor(Color.sonosPrimary)
+        .listRowBackground(Color.sonosBackgroundTertiary)
+      Divider()
+        .padding(.leading)
     }
     
     

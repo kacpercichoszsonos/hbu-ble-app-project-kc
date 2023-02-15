@@ -1,0 +1,105 @@
+{
+  "sections": [
+    {
+      "header": "Sound",
+      "subsections": [
+        {
+          "title": "Noise Cancellation",
+          "actionIcon": "arrow",
+          "sheetSection": [
+            {
+              "listViewTitle": "On"
+            },
+            {
+              "listViewTitle": "Off"
+            }
+          ]
+        },
+        {
+          "title": "EQ",
+          "actionIcon": "arrow"
+        },
+        {
+          "title": "Volume Limit",
+          "subtitle": "Off",
+          "actionIcon": "arrow",
+          "sheetSection": [
+            {
+              "listViewTitle": "Limit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "header": "Home Theatre Swap",
+      "subsections": [
+        {
+          "title": "Do Not Disturb",
+          "subtitle": "Mute calls & alerts when streaming",
+          "actionIcon": "sonosSwitch"
+        },
+        {
+          "title": "Sonos Spatial",
+          "subtitle": "Always activate when streaming TV audio",
+          "actionIcon": "sonosSwitch"
+        },
+        {
+          "title": "Headtracking Always On",
+          "actionIcon": "sonosSwitch"
+        },
+        {
+          "title": "TrueRoom Set Up",
+          "actionIcon": "plus",
+          "yellowRow": true
+        }
+      ]
+    },
+    {
+      "header": "Voice Assistant",
+      "subsections": [
+        {
+          "title": "Default",
+          "actionText": "Siri",
+          "actionIcon": "arrow"
+        },
+        {
+          "title": "Sonos Voice Control",
+          "leadingIcon": "voice_control_Icon",
+          "actionIcon": "arrow"
+        },
+        {
+          "title": "Add Voice Assistant",
+          "actionIcon": "plus",
+          "yellowRow": true
+        }
+      ]
+    },
+    {
+      "header": "General",
+      "subsections": [
+        {
+          "title": "Bluetooth",
+          "actionIcon": "arrow"
+        },
+        {
+          "title": "Hardware",
+          "actionIcon": "arrow"
+        },
+        {
+          "title": "Power",
+          "actionIcon": "arrow"
+        }
+      ]
+    },
+    {
+      "header": "Support",
+      "subsections": [
+        {
+          "title": "Get to know Duke",
+          "actionIcon": "book"
+        }
+      ]
+    }
+  ]
+}
