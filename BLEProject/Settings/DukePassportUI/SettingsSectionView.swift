@@ -11,14 +11,17 @@ import Symphony
 
 enum ActionIcon: String {
     case arrow
-    case slider
+    case sonosSwitch
     case plus
     case book
 }
 
 struct SettingsSectionView: View {
+    @StateObject var viewModel: SettingsViewModel
     let section: Section
-    @State var isOn: Bool = false
+    @State var isHeadTrackingOn: Bool = false
+    @State var isSonosSpatialOn: Bool = false
+    @State var anyOtherSwitch: Bool = false
     var body: some View {
         SymphonySectionHeader(title: section.header)
         VStack {
@@ -39,8 +42,21 @@ struct SettingsSectionView: View {
                                 .foregroundColor(Color.sonosSecondary)
                         }
                         Image("arrow_right_Icon")
-                    case ActionIcon.slider.rawValue:
-                        SymphonySwitch(isOn: $isOn)
+                    case ActionIcon.sonosSwitch.rawValue:
+                        switch subsection.title {
+                        case "Headtracking Always On":
+                            SymphonySwitch(isOn: $isHeadTrackingOn)
+                                .onChange(of: self.isHeadTrackingOn) { newValue in
+                                    self.viewModel.writeData(setting: .headTracking, value: newValue)
+                                }
+                        case "Sonos Spatial":
+                            SymphonySwitch(isOn: $isSonosSpatialOn)
+                                .onChange(of: self.isSonosSpatialOn) { newValue in
+                                    self.viewModel.writeData(setting: .sonosSpatial, value: newValue)
+                                }
+                        default:
+                            SymphonySwitch(isOn: $anyOtherSwitch)
+                        }
                     case ActionIcon.plus.rawValue:
                         Image("plus_Icon")
                     case ActionIcon.book.rawValue:
@@ -60,6 +76,9 @@ struct SettingsSectionView: View {
         .background(Color.sonosBackgroundTertiary)
         .cornerRadius(10)
         .padding(.vertical)
+        .onAppear {
+            (self.isSonosSpatialOn, self.isHeadTrackingOn) = self.viewModel.setupView()
+        }
         if section.header == "Home Theatre Swap" {
             Spacer()
             ListItem(title: "Remove Home Theatre Swap", trailContent: {

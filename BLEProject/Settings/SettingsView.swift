@@ -14,6 +14,7 @@ enum SettingsTypes {
     case headTracking
     case deviceName
     case volume
+    case sonosSpatial
 }
 
 struct SettingsView: View {

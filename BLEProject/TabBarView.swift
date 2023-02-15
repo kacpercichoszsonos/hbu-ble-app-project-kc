@@ -41,7 +41,7 @@ struct TabBarView: View {
             }
             .tag(Tab.settings)
             NavigationView {
-                DukeSettingsView()
+                DukeSettingsView(viewModel: SettingsViewModel())
             }
             .tabItem {
                 Label("Passport", systemImage: "character.book.closed")

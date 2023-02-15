@@ -261,6 +261,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                     dukeModel.ancMode = value[3].boolValue
                 case SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue:
                     dukeModel.headTrackingMode = value[3].boolValue
+                case SettingsCommandId.SETTINGS_GET_SPATIAL_AUDIO_MODE.rawValue:
+                    dukeModel.sonosSpatial = value[3].boolValue
                 default:
                     return
                 }
@@ -292,6 +294,9 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
                                    SettingsCommandId.SETTINGS_GET_HEAD_TRACKING_MODE.rawValue]))
+        self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                   SettingsCommandId.SETTINGS_GET_SPATIAL_AUDIO_MODE.rawValue]))
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
                                    NamespaceId.NAMESPACE_VOLUME.rawValue,
                                    VolumeCommandId.VOLUME_GET_VOLUME.rawValue]))

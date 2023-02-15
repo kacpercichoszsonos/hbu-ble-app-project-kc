@@ -57,6 +57,11 @@ class SettingsViewModel: ObservableObject {
                                                     NamespaceId.NAMESPACE_VOLUME.rawValue,
                                                     VolumeCommandId.VOLUME_SET_VOLUME.rawValue,
                                                     UInt8(Int(volumeFloat))]))
+        case .sonosSpatial:
+            BleManager.shared.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
+                                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                    SettingsCommandId.SETTINGS_SET_SPATIAL_AUDIO_MODE.rawValue,
+                                                    value as? Bool ?? false ? CommandPduType.COMMAND_PDU_ON.rawValue : CommandPduType.COMMAND_PDU_OFF.rawValue]))
         }
     }
 
@@ -92,9 +97,9 @@ class SettingsViewModel: ObservableObject {
 
     func setupView() -> (ancMode: Bool, headTrackingMode: Bool) {
         if let dukeModel = self.dukeModel,
-           let ancMode = dukeModel.ancMode,
+           let sonosSpatial = dukeModel.sonosSpatial,
            let headTrackingMode = dukeModel.headTrackingMode {
-            return (ancMode, headTrackingMode)
+            return (sonosSpatial, headTrackingMode)
         }
         return (false, false)
     }
@@ -121,5 +126,18 @@ class SettingsViewModel: ObservableObject {
             return "speaker.wave.2"
         }
         return "speaker.wave.3"
+    }
+
+    func loadJson() -> [Section]? {
+        if let url = Bundle.main.url(forResource: "settings(1)", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let jsonData = try JSONDecoder().decode(Settings.self, from: data)
+                return jsonData.sections
+            } catch {
+                print("error:\(error)")
+            }
+        }
+        return nil
     }
 }
