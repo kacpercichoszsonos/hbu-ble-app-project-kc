@@ -23,13 +23,13 @@ struct SettingsSectionView: View {
     @State var isSonosSpatialOn: Bool = false
     @State var anyOtherSwitch: Bool = false
     @State var isNoiseCancellationSheetOn: Bool = false
-  @State var isNoiseCancellationSheetOff: Bool = false
+    @State var isNoiseCancellationSheetOff: Bool = false
 
     var body: some View {
         SymphonySectionHeader(title: section.header)
         VStack {
             ForEach(section.subsections, id: \.title) { subsection in
-                ListItem(title: subsection.title, subtitle: subsection.subtitle ?? nil,
+                ListItem(title: subsection.title, subtitle: subsection.subtitle ?? nil, yellowText: subsection.yellowRow ?? nil,
                 leadContent: {
                     if let leadIcon = subsection.leadingIcon {
                         Image(leadIcon)
@@ -93,8 +93,6 @@ struct SettingsSectionView: View {
             ListItem(title: "Remove Home Theatre Swap", trailContent: {
                 Image("remove_Icon")
             })
-            .frame(height: 60)
-            .foregroundColor(Color.sonosEastCoastAccent)
             .background(Color.sonosBackgroundTertiary)
         }
         if section.header == "Support" {
@@ -103,10 +101,7 @@ struct SettingsSectionView: View {
             },trailContent: {
                 Image("remove_Icon")
             })
-            .frame(height: 60)
             .background(Color.sonosBackgroundTertiary)
-            .cornerRadius(10)
-            Spacer()
         }
     }
 }
