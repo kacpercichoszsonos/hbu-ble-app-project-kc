@@ -16,45 +16,51 @@ public struct ListItem<LeadContent: View, TrailContent: View>: View {
     public var title: String = "Title"
     public var subtitle: String?
     public var eyebrown: String?
+    public var yellowText: Bool?
+    private var foregroundColor: Color?
         
 
-    public init(title: String = "Title", subtitle: String? = nil, eyebrown: String? = nil, @ViewBuilder leadContent: @escaping () -> LeadContent, @ViewBuilder trailContent: @escaping () -> TrailContent) {
+    public init(title: String = "Title", subtitle: String? = nil, eyebrown: String? = nil, yellowText: Bool? = false, @ViewBuilder leadContent: @escaping () -> LeadContent, @ViewBuilder trailContent: @escaping () -> TrailContent) {
         self.title = title
         self.subtitle = subtitle
         self.eyebrown = eyebrown
+        self.yellowText = yellowText
         self.leadContent = leadContent
         self.trailContent = trailContent
     }
     
     
     // Init without leading or trailing views
-    public init(title: String, subtitle: String? = nil, eyebrown: String? = nil) where LeadContent == EmptyView, TrailContent == EmptyView {
+    public init(title: String, subtitle: String? = nil, eyebrown: String? = nil, yellowText: Bool? = false) where LeadContent == EmptyView, TrailContent == EmptyView {
         self.init(
             title: title,
             subtitle: subtitle,
             eyebrown: eyebrown,
+            yellowText: yellowText,
             leadContent: { EmptyView() },
             trailContent: { EmptyView() }
         )
     }
     
     // Only Leading
-    public init(title: String, subtitle: String? = nil, eyebrown: String? = nil, @ViewBuilder leadContent: @escaping () -> LeadContent) where TrailContent == EmptyView {
+    public init(title: String, subtitle: String? = nil, eyebrown: String? = nil, yellowText: Bool? = false, @ViewBuilder leadContent: @escaping () -> LeadContent) where TrailContent == EmptyView {
         self.init(
             title: title,
             subtitle: subtitle,
             eyebrown: eyebrown,
+            yellowText: yellowText,
             leadContent: leadContent,
             trailContent: {EmptyView()}
         )
     }
     
     // Only Trailing
-    public init(title: String, subtitle: String? = nil, eyebrown: String? = nil, @ViewBuilder trailContent: @escaping () -> TrailContent) where LeadContent == EmptyView {
+    public init(title: String, subtitle: String? = nil, eyebrown: String? = nil, yellowText: Bool? = false, @ViewBuilder trailContent: @escaping () -> TrailContent) where LeadContent == EmptyView {
         self.init(
             title: title,
             subtitle: subtitle,
             eyebrown: eyebrown,
+            yellowText: yellowText,
             leadContent: { EmptyView() },
             trailContent: trailContent
         )
@@ -92,12 +98,11 @@ public struct ListItem<LeadContent: View, TrailContent: View>: View {
             // Trailing
             trailContent()
         }
+        .foregroundColor(((self.title == "Remove Home Theatre Swap") || self.yellowText ?? false) ? .sonosEastCoastAccent : .sonosPrimary)
         .padding(.horizontal)
-        .frame(height: 60)
-        .foregroundColor(Color.sonosPrimary)
+        .frame(height: 80)
         .listRowBackground(Color.sonosBackgroundTertiary)
-      Divider()
-        .padding(.leading)
+        (self.title == "Remove Home Theatre Swap" || self.title == "Visit help center") ? nil : Divider().padding(.leading)
     }
     
     

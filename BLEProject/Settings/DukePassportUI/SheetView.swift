@@ -31,10 +31,10 @@ struct SheetView: View {
           }
         } else {
           ListItem(title: "Add TrueRoom", trailContent: {
-            Image("shape")
+            Image("Shape")
           })
           ListItem(title: "Add a Voice Assistant", trailContent: {
-            Image("speech")
+            Image("Speech")
           })
         }
       }
@@ -46,9 +46,3 @@ struct SheetView: View {
       Spacer()
     }
 }
-
-//struct SheetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//      SheetView(headerTitle: "title", sheetSection: <#[SheetSection]#>)
-//    }
-//}
