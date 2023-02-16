@@ -263,6 +263,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                     dukeModel.headTrackingMode = value[3].boolValue
                 case SettingsCommandId.SETTINGS_GET_SPATIAL_AUDIO_MODE.rawValue:
                     dukeModel.sonosSpatial = value[3].boolValue
+                case SettingsCommandId.SETTINGS_VOLUME_GET_MAX_VOLUME.rawValue:
+                    dukeModel.volume = Int(value[3])
                 default:
                     return
                 }
@@ -298,8 +300,8 @@ class BleManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, Obse
                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
                                    SettingsCommandId.SETTINGS_GET_SPATIAL_AUDIO_MODE.rawValue]))
         self.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                   NamespaceId.NAMESPACE_VOLUME.rawValue,
-                                   VolumeCommandId.VOLUME_GET_VOLUME.rawValue]))
+                                   NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                   SettingsCommandId.SETTINGS_VOLUME_GET_MAX_VOLUME.rawValue]))
         self.checkDuke()
     }
 

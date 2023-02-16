@@ -30,4 +30,5 @@ struct Subsection: Codable {
 // MARK: - SheetSection
 struct SheetSection: Codable {
     let listViewTitle: String
+    let checked: Bool?
 }

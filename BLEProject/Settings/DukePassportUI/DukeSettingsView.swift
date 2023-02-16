@@ -23,16 +23,26 @@ struct DukeSettingsView: View {
                 .foregroundColor(Color.primary)
                 .frame(maxWidth: .infinity)
                 HeadphonesImageView()
-                    .padding(.top, -125)
-                if let sections = self.viewModel.loadJson() {
-                    ForEach(sections, id: \.header) { setting in
-                        SettingsSectionView(viewModel: self.viewModel, section: setting)
+                    .padding(.top, -100)
+                if self.viewModel.isDukeConnected {
+                    if let sections = self.viewModel.loadJson() {
+                        ForEach(sections, id: \.header) { setting in
+                            SettingsSectionView(viewModel: self.viewModel, section: setting)
+                        }
                     }
+                } else {
+                    Spacer()
+                    SymphonyButton(Constants.Strings.SettingsView.settingsViewConnectToDukeString) {
+                        self.viewModel.connectDuke()
+                    }
+                    .buttonStyle(.symphonyPrimary)
+                    Spacer()
                 }
             }
             .padding(.horizontal)
             .sheet(isPresented: $isPresented) {
-              SheetView(headerTitle: "Add to Duke")
+                SheetView(viewModel: self.viewModel, headerTitle: "Add to Duke")
+                    .symphonyCard {}
             }.padding()
         }
         .background(Color.sonosBackgroundSecondary.ignoresSafeArea())

@@ -54,8 +54,8 @@ class SettingsViewModel: ObservableObject {
             }
 
             BleManager.shared.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
-                                                    NamespaceId.NAMESPACE_VOLUME.rawValue,
-                                                    VolumeCommandId.VOLUME_SET_VOLUME.rawValue,
+                                                    NamespaceId.NAMESPACE_SETTINGS.rawValue,
+                                                    SettingsCommandId.SETTINGS_VOLUME_SET_MAX_VOLUME.rawValue,
                                                     UInt8(Int(volumeFloat))]))
         case .sonosSpatial:
             BleManager.shared.writeData(data: Data([CommandType.COMMAND_TYPE_COMMAND.rawValue,
@@ -95,13 +95,21 @@ class SettingsViewModel: ObservableObject {
         self.isDukeConnected ? BleManager.shared.disconnectDuke() : self.connectDuke()
     }
 
-    func setupView() -> (ancMode: Bool, headTrackingMode: Bool) {
+    func setupView() -> (sonosSpatial: Bool, headTrackingMode: Bool) {
         if let dukeModel = self.dukeModel,
            let sonosSpatial = dukeModel.sonosSpatial,
            let headTrackingMode = dukeModel.headTrackingMode {
             return (sonosSpatial, headTrackingMode)
         }
         return (false, false)
+    }
+
+    func getAnc() -> Bool {
+        if let dukeModel = self.dukeModel,
+           let anc = dukeModel.ancMode {
+            return anc
+        }
+        return false
     }
 
     func setupVolumeSlider() -> Float {

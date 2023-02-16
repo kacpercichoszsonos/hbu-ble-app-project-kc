@@ -8,10 +8,12 @@
           "actionIcon": "arrow",
           "sheetSection": [
             {
-              "listViewTitle": "On"
+              "listViewTitle": "On",
+              "checked": false
             },
             {
-              "listViewTitle": "Off"
+              "listViewTitle": "Off",
+              "checked": false
             }
           ]
         },

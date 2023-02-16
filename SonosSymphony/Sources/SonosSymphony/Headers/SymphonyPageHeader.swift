@@ -52,7 +52,7 @@ public struct SymphonyPageHeader: View {
             if let title,
                !title.isEmpty {
                     Text(title)
-                        .font(.largeTitle)
+                    .font(.title)
                         .bold()
             }
             if let subTitle,

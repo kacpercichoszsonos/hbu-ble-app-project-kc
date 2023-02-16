@@ -16,28 +16,37 @@ enum ActionIcon: String {
     case book
 }
 
+enum SheetToShow: String, Identifiable {
+    var id: Self {
+        return self
+    }
+    case NoiseCancellation
+    case VolumeLimit
+}
+
 struct SettingsSectionView: View {
     @StateObject var viewModel: SettingsViewModel
     let section: Section
     @State var isHeadTrackingOn: Bool = false
     @State var isSonosSpatialOn: Bool = false
     @State var anyOtherSwitch: Bool = false
-    @State var isNoiseCancellationSheetOn: Bool = false
-    @State var isNoiseCancellationSheetOff: Bool = false
+    @State var isSheetOn: Bool = false
+    @State var sheetToShow: SheetToShow?
+    @State var showSheetView: Bool = false
 
     var body: some View {
         SymphonySectionHeader(title: section.header)
         VStack {
             ForEach(section.subsections, id: \.title) { subsection in
                 ListItem(title: subsection.title, subtitle: subsection.subtitle ?? nil, yellowText: subsection.yellowRow ?? nil,
-                leadContent: {
+                         leadContent: {
                     if let leadIcon = subsection.leadingIcon {
                         Image(leadIcon)
                             .resizable()
                             .frame(width: 20,height: 20)
                     }
                 },
-                trailContent: {
+                         trailContent: {
                     switch subsection.actionIcon {
                     case ActionIcon.arrow.rawValue:
                         if let actionText = subsection.actionText {
@@ -68,19 +77,30 @@ struct SettingsSectionView: View {
                         Image("home")
                     }
                 }).onTapGesture {
-                  if subsection.title == "Noise Cancellation" {
                     withAnimation {
-                      isNoiseCancellationSheetOn = !isNoiseCancellationSheetOff
+                        if subsection.title == "Noise Cancellation" {
+                            self.sheetToShow = .NoiseCancellation
+                        } else {
+                            self.sheetToShow = .VolumeLimit
+                        }
                     }
-                  }
                 }
             }
         }
-        .sheet(isPresented: $isNoiseCancellationSheetOn, content: {
-          if let sheetSection = section.subsections.first(where: {$0.title == "Noise Cancellation"})?.sheetSection {
-            SheetView(headerTitle: "Noise Cancellation", sheetSection: sheetSection)
-          }
-        })
+        .sheet(item: $sheetToShow) { sheet in
+            switch sheet {
+            case .NoiseCancellation:
+                if let sheetSection = section.subsections.first(where: {$0.title == "Noise Cancellation"})?.sheetSection {
+                    SheetView(viewModel: self.viewModel, headerTitle: "Noise Cancellation", sheetSection: sheetSection)
+                        .symphonyCard {}
+                }
+            case .VolumeLimit:
+                if let sheetSection = section.subsections.first(where: {$0.title == "Volume Limit"})?.sheetSection {
+                    SheetView(viewModel: self.viewModel, headerTitle: "Volume Limit", sheetSection: sheetSection)
+                        .symphonyCard {}
+                }
+            }
+        }
         .frame(maxWidth: .infinity)
         .background(Color.sonosBackgroundTertiary)
         .cornerRadius(10)
